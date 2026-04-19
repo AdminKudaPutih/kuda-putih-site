@@ -8,8 +8,18 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-inter);
+  
+  --color-brand-primary: #2F6F4E;
+  --color-brand-primarySoft: #3F8A63;
+  --color-brand-cream: #F5EFE6;
+  --color-brand-creamSoft: #FAF7F2;
+  --color-brand-dark: #1F1F1F;
+  --color-brand-darkSoft: #4A4A4A;
+  --color-brand-accent: #D96C3B;
+  --color-brand-accentSoft: #E07A5F;
 }
 
 @media (prefers-color-scheme: dark) {

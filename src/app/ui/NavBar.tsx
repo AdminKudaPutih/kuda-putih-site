@@ -72,21 +72,21 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+      className={`fixed md:rounded-full md:mx-2 top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         !isVisible ? "-translate-y-full" : "translate-y-0"
       } ${
         isAtTop
-          ? "bg-[#fdfbf7] shadow-md dark:bg-zinc-900"
-          : "bg-transparent pointer-events-auto"
+          ? "bg-brand-cream shadow-md"
+          : "bg-brand-cream/10 backdrop-blur-sm shadow-sm pointer-events-auto"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           
           {/* Logo - Left */}
-          <div className="shrink-0 flex items-center w-1/4">
+          <div className="shrink-0 flex items-center md:w-1/4">
             <Link href="#home" className="flex items-center gap-2">
-              <span className={`font-serif text-xl sm:text-2xl font-bold tracking-tight ${isAtTop ? 'text-emerald-900 dark:text-emerald-400' : 'text-emerald-900 drop-shadow-md dark:text-emerald-400'}`}>
+              <span className={`font-heading text-xl sm:text-2xl font-bold tracking-tight text-brand-primary`}>
                 Kuda Putih House
               </span>
             </Link>
@@ -98,10 +98,10 @@ export default function NavBar() {
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-all hover:text-emerald-600 dark:hover:text-emerald-400 ${
+                className={`text-sm font-medium transition-all hover:text-brand-primarySoft ${
                   activeSection === link.href.replace("#", "")
-                    ? "bg-emerald-700 text-white dark:text-emerald-500 font-bold scale-105 drop-shadow-sm rounded-full px-2"
-                    : isAtTop ? "text-zinc-600 dark:text-zinc-300" : "text-emerald-900 font-semibold drop-shadow-md dark:text-emerald-300"
+                    ? "bg-brand-primary text-brand-cream font-bold scale-105 drop-shadow-sm rounded-full px-4 py-1"
+                    : "text-brand-darkSoft hover:text-brand-primary"
                 }`}
               >
                 {link.name}
@@ -129,11 +129,7 @@ export default function NavBar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMobileMenu}
-              className={`inline-flex items-center justify-center p-2 rounded-md ${
-                isAtTop 
-                  ? "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800" 
-                  : "text-emerald-900 bg-white/50 hover:bg-white/80 dark:text-emerald-300 dark:bg-black/50 backdrop-blur-sm"
-              } focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500`}
+              className={`inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-primary hover:bg-brand-creamSoft focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-primary`}
               aria-expanded={isMobileMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -165,7 +161,7 @@ export default function NavBar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 border-b border-zinc-200 dark:border-zinc-800 bg-[#fdfbf7] dark:bg-zinc-900 shadow-xl" : "max-h-0 bg-transparent"}`}>
+      <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 border-b border-brand-creamSoft bg-brand-cream shadow-xl" : "max-h-0 bg-transparent"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
             <a
@@ -174,8 +170,8 @@ export default function NavBar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                 activeSection === link.href.replace("#", "")
-                  ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400"
-                  : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                  ? "bg-brand-primarySoft/10 text-brand-primary"
+                  : "text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark"
               }`}
             >
               {link.name}
@@ -184,11 +180,7 @@ export default function NavBar() {
           <a
              href="#book"
              onClick={() => setIsMobileMenuOpen(false)}
-             className={`block px-3 py-2 rounded-md text-base font-bold transition-colors mt-4 text-center border-2 ${
-                activeSection === "book"
-                  ? "bg-emerald-800 text-white border-emerald-800 dark:bg-emerald-600 dark:border-emerald-600"
-                  : "text-emerald-800 border-emerald-800 hover:bg-emerald-800 hover:text-white dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-600"
-             }`}
+             className={`block px-3 py-2 rounded-md text-base font-bold transition-colors mt-4 text-center text-brand-cream bg-brand-primary hover:bg-brand-primarySoft`}
           >
              Book Now
           </a>
