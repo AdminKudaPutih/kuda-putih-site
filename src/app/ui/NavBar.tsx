@@ -9,29 +9,35 @@ const navLinks = [
   { name: "Rooms", href: "#rooms" },
   { name: "Gallery", href: "#gallery" },
   { name: "Location", href: "#location" },
-  { name: "Book Now", href: "#book" },
 ];
 
 export default function NavBar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Determine if we are at the top
+      setIsAtTop(currentScrollY <= 50);
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
+  // Observer for active scroll state
   useEffect(() => {
     const observers = new Map();
     
     const observerOptions = {
       root: null,
-      rootMargin: "-40% 0px -40% 0px", // Detect when section is strongly in viewport
+      rootMargin: "-40% 0px -40% 0px", 
       threshold: 0,
     };
 
@@ -43,7 +49,8 @@ export default function NavBar() {
       });
     }, observerOptions);
 
-    navLinks.forEach((link) => {
+    // Also observe the 'book' section even though it's a CTA
+    [...navLinks, { name: "Book Now", href: "#book" }].forEach((link) => {
       const id = link.href.replace("#", "");
       const element = document.getElementById(id);
       if (element) {
@@ -65,32 +72,36 @@ export default function NavBar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out ${
-        isScrolled
-          ? "bg-white/95 shadow-md backdrop-blur-sm dark:bg-zinc-900/95"
-          : "bg-[#fdfbf7] dark:bg-zinc-900"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        !isVisible ? "-translate-y-full" : "translate-y-0"
+      } ${
+        isAtTop
+          ? "bg-[#fdfbf7] shadow-md dark:bg-zinc-900"
+          : "bg-transparent pointer-events-auto"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
-          <div className="flex-shrink-0 flex items-center">
+          
+          {/* Logo - Left */}
+          <div className="shrink-0 flex items-center w-1/4">
             <Link href="#home" className="flex items-center gap-2">
-              <span className={`font-serif text-xl sm:text-2xl font-bold tracking-tight text-emerald-900 dark:text-emerald-400`}>
+              <span className={`font-serif text-xl sm:text-2xl font-bold tracking-tight ${isAtTop ? 'text-emerald-900 dark:text-emerald-400' : 'text-emerald-900 drop-shadow-md dark:text-emerald-400'}`}>
                 Kuda Putih House
               </span>
             </Link>
           </div>
 
-          {/* Desktop menu */}
-          <nav className="hidden md:flex space-x-8">
+          {/* Nav Links - Center */}
+          <nav className="hidden md:flex justify-center flex-1 space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-emerald-600 dark:hover:text-emerald-400 ${
+                className={`text-sm font-medium transition-all hover:text-emerald-600 dark:hover:text-emerald-400 ${
                   activeSection === link.href.replace("#", "")
-                    ? "text-emerald-700 dark:text-emerald-500 font-semibold"
-                    : "text-zinc-600 dark:text-zinc-300"
+                    ? "bg-emerald-700 text-white dark:text-emerald-500 font-bold scale-105 drop-shadow-sm rounded-full px-2"
+                    : isAtTop ? "text-zinc-600 dark:text-zinc-300" : "text-emerald-900 font-semibold drop-shadow-md dark:text-emerald-300"
                 }`}
               >
                 {link.name}
@@ -98,11 +109,31 @@ export default function NavBar() {
             ))}
           </nav>
 
+          {/* CTA - Right */}
+          <div className="hidden md:flex items-center justify-end w-1/4">
+             <a
+                href="#book"
+                className={`px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 ${
+                   activeSection === "book"
+                     ? "bg-emerald-800 text-white border-emerald-800 dark:bg-emerald-600 dark:border-emerald-600"
+                     : isAtTop
+                       ? "text-emerald-800 border-emerald-800 hover:bg-emerald-800 hover:text-white dark:text-emerald-400 dark:border-emerald-600 dark:hover:bg-emerald-600"
+                       : "text-emerald-900 border-emerald-900 bg-white/50 hover:bg-emerald-900 hover:text-white backdrop-blur-sm dark:text-emerald-400 dark:border-emerald-400 dark:bg-black/50"
+                }`}
+              >
+                Book Now
+              </a>
+          </div>
+
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMobileMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500"
+              className={`inline-flex items-center justify-center p-2 rounded-md ${
+                isAtTop 
+                  ? "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800" 
+                  : "text-emerald-900 bg-white/50 hover:bg-white/80 dark:text-emerald-300 dark:bg-black/50 backdrop-blur-sm"
+              } focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500`}
               aria-expanded={isMobileMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -134,8 +165,8 @@ export default function NavBar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 border-b border-zinc-200 dark:border-zinc-800" : "max-h-0"}`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#fdfbf7] dark:bg-zinc-900 shadow-inner">
+      <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 border-b border-zinc-200 dark:border-zinc-800 bg-[#fdfbf7] dark:bg-zinc-900 shadow-xl" : "max-h-0 bg-transparent"}`}>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -150,6 +181,17 @@ export default function NavBar() {
               {link.name}
             </a>
           ))}
+          <a
+             href="#book"
+             onClick={() => setIsMobileMenuOpen(false)}
+             className={`block px-3 py-2 rounded-md text-base font-bold transition-colors mt-4 text-center border-2 ${
+                activeSection === "book"
+                  ? "bg-emerald-800 text-white border-emerald-800 dark:bg-emerald-600 dark:border-emerald-600"
+                  : "text-emerald-800 border-emerald-800 hover:bg-emerald-800 hover:text-white dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-600"
+             }`}
+          >
+             Book Now
+          </a>
         </div>
       </div>
     </header>
