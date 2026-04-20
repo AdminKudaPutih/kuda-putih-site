@@ -1,45 +1,15 @@
 import HeroSection from "./ui/HeroSection";
 import AboutSection from "./ui/AboutSection";
+import RoomsOverviewSection from "./ui/RoomsOverviewSection";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <HeroSection />
 
-
       <AboutSection />
 
-      {/* Rooms */}
-      <section id="rooms" className="flex flex-col min-h-screen bg-[#fdfbf7] dark:bg-zinc-950 px-6 py-24 items-center justify-center">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-8">Our Rooms</h2>
-          <p className="text-zinc-600 dark:text-zinc-400 text-lg mb-12">
-            Each space is meticulously designed with local craftsmanship and modern amenities.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-zinc-900 hover:shadow-xl transition-all">
-              <div className="h-64 bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-400 italic">
-                Room Image Placeholder
-              </div>
-              <div className="p-8 text-left">
-                <h3 className="text-2xl font-bold text-emerald-900 dark:text-emerald-300 mb-2">Standard Suite</h3>
-                <p className="text-zinc-600 dark:text-zinc-400 mb-4">Cozy and efficient layout for a solo traveler or digital nomad.</p>
-                <p className="font-semibold text-emerald-700 dark:text-emerald-400">IDR 3,500,000 / month</p>
-              </div>
-            </div>
-            <div className="group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-zinc-900 hover:shadow-xl transition-all">
-              <div className="h-64 bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-400 italic">
-                Room Image Placeholder
-              </div>
-              <div className="p-8 text-left">
-                <h3 className="text-2xl font-bold text-emerald-900 dark:text-emerald-300 mb-2">Deluxe Balcony</h3>
-                <p className="text-zinc-600 dark:text-zinc-400 mb-4">Spacious setup featuring a private balcony overlooking the rice paddies.</p>
-                <p className="font-semibold text-emerald-700 dark:text-emerald-400">IDR 5,000,000 / month</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RoomsOverviewSection />
 
       {/* Gallery */}
       <section id="gallery" className="flex flex-col min-h-screen bg-emerald-50 dark:bg-zinc-900 px-6 py-24 items-center justify-center">
