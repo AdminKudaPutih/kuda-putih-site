@@ -153,7 +153,10 @@ export default function NavBar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 border-b border-brand-creamSoft bg-brand-cream shadow-xl" : "max-h-0 bg-transparent"}`}>
+      <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 border-b shadow-xl" : "max-h-0 bg-transparent"}${isAtTop
+          ? "bg-brand-cream shadow-md"
+          : "bg-brand-cream/50 backdrop-blur-md shadow-sm pointer-events-auto"
+        }`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
             <a
@@ -161,7 +164,7 @@ export default function NavBar() {
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${activeSection === link.href.replace("#", "")
-                ? "bg-brand-primarySoft/10 text-brand-primary"
+                ? "text-brand-primary"
                 : "text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark"
                 }`}
             >

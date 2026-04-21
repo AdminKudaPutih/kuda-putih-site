@@ -11,15 +11,15 @@
   --font-sans: var(--font-inter);
   --font-heading: var(--font-playfair);
   --font-body: var(--font-inter);
-  
+
   --color-brand-primary: #2F6F4E;
   --color-brand-primarySoft: #3F8A63;
   --color-brand-cream: #F5EFE6;
   --color-brand-creamSoft: #FAF7F2;
   --color-brand-dark: #1F1F1F;
   --color-brand-darkSoft: #4A4A4A;
-  --color-brand-accent: #D96C3B;
-  --color-brand-accentSoft: #E07A5F;
+  --color-brand-accent: #B8963D;
+  --color-brand-accentSoft: #E3C97A;
 }
 
 @media (prefers-color-scheme: dark) {

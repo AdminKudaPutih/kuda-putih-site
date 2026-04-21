@@ -26,7 +26,7 @@ const rooms = [
 
 export default function RoomsOverviewSection() {
   return (
-    <section id="rooms" className="py-24 px-6 bg-brand-primarySoft/10 dark:bg-zinc-950 overflow-hidden">
+    <section id="rooms" className="py-24 px-6 bg-brand-primarySoft/10 dark:bg-zinc-950 overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <motion.h2 
@@ -60,7 +60,7 @@ export default function RoomsOverviewSection() {
                 initial={{ opacity: 0, x: room.alignment === 'left' ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
                 className="w-full md:w-1/2"
               >
                 <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group border border-zinc-200 dark:border-zinc-800">
@@ -80,7 +80,7 @@ export default function RoomsOverviewSection() {
                 initial={{ opacity: 0, x: room.alignment === 'left' ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
                 className="w-full md:w-1/2 space-y-6"
               >
                 <h3 className="text-3xl font-serif font-bold text-emerald-800 dark:text-emerald-300">
