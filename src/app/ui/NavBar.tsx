@@ -108,16 +108,19 @@ export default function NavBar() {
 
           {/* CTA - Right */}
           <div className="hidden md:flex items-center justify-end w-1/4">
-            <a
-              href="#book"
-              className={`px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm text-white ${
-                activeSection === "book" 
-                  ? "bg-brand-accent border-brand-accent shadow-[0_0_15px_rgba(217,108,59,0.5)] animate-pulse scale-105 dark:bg-brand-accent dark:border-brand-accent" 
-                  : "bg-brand-accentSoft shadow-brand-accentSoft border-transparent dark:bg-emerald-600 dark:border-emerald-600 hover:scale-105 hover:bg-brand-accent"
-              }`}
-            >
-              Book Now
-            </a>
+            <div className="relative inline-flex group">
+              <div className="absolute inset-0 rounded-full border-2 border-brand-accent bg-brand-accentSoft/50 pulse-soft opacity-75"></div>
+              <a
+                href="#book"
+                className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${
+                  activeSection === "book" 
+                    ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-white" 
+                    : "bg-brand-accentSoft/50 border-brand-accent shadow-brand-accentSoft dark:bg-emerald-600/50 dark:border-emerald-600 text-brand-accent hover:text-white hover:bg-brand-accent hover:border-brand-accent"
+                }`}
+              >
+                Book Now
+              </a>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -174,17 +177,20 @@ export default function NavBar() {
               {link.name}
             </a>
           ))}
-          <a
-            href="#book"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-bold transition-colors mt-4 text-center text-brand-cream ${
-              activeSection === "book"
-                ? "bg-brand-accent animate-pulse shadow-[0_0_15px_rgba(217,108,59,0.5)] scale-100"
-                : "bg-brand-primary hover:bg-brand-primarySoft"
-            }`}
-          >
-            Book Now
-          </a>
+          <div className="relative mt-4">
+            <div className="absolute inset-0 rounded-md border-2 border-brand-accent animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-75"></div>
+            <a
+              href="#book"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`relative block px-3 py-2 rounded-md border-2 text-base font-bold transition-colors text-center text-brand-cream ${
+                activeSection === "book"
+                  ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft"
+                  : "bg-brand-accentSoft/50 border-brand-accent shadow-brand-accentSoft hover:bg-brand-accent hover:border-brand-accent"
+              }`}
+            >
+              Book Now
+            </a>
+          </div>
         </div>
       </div>
     </header>

@@ -195,7 +195,7 @@ export default function BookSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedRoom(null)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-60"
             />
             
             {/* Modal Content */}
@@ -204,7 +204,7 @@ export default function BookSection() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-[70] bg-white dark:bg-zinc-950 rounded-t-3xl md:top-1/2 md:-translate-y-1/2 md:max-h-[80vh] md:max-w-xl md:mx-auto md:rounded-3xl shadow-2xl flex flex-col md:bottom-auto md:left-auto md:right-auto md:w-full overflow-hidden"
+              className="fixed bottom-0 left-0 right-0 z-70 bg-white dark:bg-zinc-950 rounded-t-3xl md:top-1/2 md:-translate-y-1/2 md:max-h-[80vh] md:max-w-xl md:mx-auto md:rounded-3xl shadow-2xl flex flex-col md:bottom-auto md:left-auto md:right-auto md:w-full overflow-hidden"
               style={ { maxHeight: '90vh' } }
             >
               {/* Drag Indicator (Mobile) */}
