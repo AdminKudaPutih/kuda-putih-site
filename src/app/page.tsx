@@ -3,7 +3,7 @@ import AboutSection from "./ui/AboutSection";
 import RoomsOverviewSection from "./ui/RoomsOverviewSection";
 import MemorySection from "./ui/MemorySection";
 import LocationSection from "./ui/LocationSection";
-
+import BookSection from "./ui/BookSection";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -20,42 +20,7 @@ export default function Home() {
       <LocationSection />
 
       {/* Book Now */}
-      <section id="book" className="flex flex-col min-h-screen bg-[#fdfbf7] dark:bg-zinc-900 px-6 py-24 items-center justify-center text-center">
-        <div className="max-w-xl w-full bg-white dark:bg-zinc-950 rounded-3xl shadow-2xl p-10 border border-emerald-50 dark:border-zinc-800">
-          <h2 className="text-4xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-4">Book Your Stay</h2>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-            Tell us when you plan to arrive and we&apos;ll check availability for you.
-          </p>
-          <form className="flex flex-col gap-4 text-left">
-            <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Name</label>
-              <input type="text" className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg p-3 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="First & Last Name"/>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Email</label>
-              <input type="email" className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg p-3 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="you@example.com"/>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Move in</label>
-                <input type="date" className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg p-3 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none"/>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Duration</label>
-                <select className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg p-3 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-                  <option>1 Month</option>
-                  <option>3 Months</option>
-                  <option>6+ Months</option>
-                </select>
-              </div>
-            </div>
-            <button type="button" className="w-full bg-emerald-800 text-white font-bold py-4 rounded-lg mt-4 hover:bg-emerald-900 transition-colors shadow-md">
-              Check Availability
-            </button>
-          </form>
-        </div>
-      </section>
-
+      <BookSection />
       <footer className="bg-emerald-950 dark:bg-black py-10 text-center text-emerald-50 dark:text-zinc-500">
         <p>&copy; {new Date().getFullYear()} Kuda Putih House, Bali. All Rights Reserved.</p>
       </footer>

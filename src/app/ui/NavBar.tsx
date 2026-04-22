@@ -110,8 +110,11 @@ export default function NavBar() {
           <div className="hidden md:flex items-center justify-end w-1/4">
             <a
               href="#book"
-              className={`px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 bg-brand-accentSoft shadow-sm shadow-brand-accentSoft text-white dark:bg-emerald-600 dark:border-emerald-600
-                }`}
+              className={`px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm text-white ${
+                activeSection === "book" 
+                  ? "bg-brand-accent border-brand-accent shadow-[0_0_15px_rgba(217,108,59,0.5)] animate-pulse scale-105 dark:bg-brand-accent dark:border-brand-accent" 
+                  : "bg-brand-accentSoft shadow-brand-accentSoft border-transparent dark:bg-emerald-600 dark:border-emerald-600 hover:scale-105 hover:bg-brand-accent"
+              }`}
             >
               Book Now
             </a>
@@ -174,7 +177,11 @@ export default function NavBar() {
           <a
             href="#book"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`block px-3 py-2 rounded-md text-base font-bold transition-colors mt-4 text-center text-brand-cream bg-brand-primary hover:bg-brand-primarySoft`}
+            className={`block px-3 py-2 rounded-md text-base font-bold transition-colors mt-4 text-center text-brand-cream ${
+              activeSection === "book"
+                ? "bg-brand-accent animate-pulse shadow-[0_0_15px_rgba(217,108,59,0.5)] scale-100"
+                : "bg-brand-primary hover:bg-brand-primarySoft"
+            }`}
           >
             Book Now
           </a>

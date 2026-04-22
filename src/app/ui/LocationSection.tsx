@@ -6,26 +6,26 @@ import { MapPin, Car, Navigation } from "lucide-react";
 
 export default function LocationSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  // Car moves from right (100%) to left (-20%)
-  const carX = useTransform(scrollYProgress, [0, 1], ["100%", "-20%"]);
+  // Car moves from left to right across the container
+  const carPosition = useTransform(scrollYProgress, [0, 1], ["-65%", "100%"]);
 
   return (
-    <section 
-      id="location" 
+    <section
+      id="location"
       ref={sectionRef}
       className="py-24 px-6 bg-white dark:bg-zinc-950 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          
+
           {/* Left Side: Map */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -87,17 +87,14 @@ export default function LocationSection() {
             </motion.div>
 
             {/* Car Animation Container */}
-            <div className="relative h-20 w-full bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl overflow-hidden border-b-4 border-zinc-200 dark:border-zinc-800">
+            <div className="relative h-12 w-full bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl overflow-hidden border-b-4 border-black dark:border-zinc-800">
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-zinc-300 dark:bg-zinc-700" /> {/* Road Line */}
-              <motion.div 
-                style={{ x: carX }}
-                className="absolute bottom-2 flex flex-col items-center"
+              <motion.div
+                style={{ left: carPosition, x: "-50%" }}
+                className="absolute bottom-1 flex flex-col items-center"
               >
                 <Car className="text-emerald-700 dark:text-emerald-400 w-10 h-10" />
-                <div className="flex gap-4 mt-[-4px]">
-                  <div className="w-2 h-2 bg-zinc-800 dark:bg-zinc-400 rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-zinc-800 dark:bg-zinc-400 rounded-full animate-bounce delay-100" />
-                </div>
+
               </motion.div>
             </div>
             <p className="text-sm text-zinc-500 italic text-center">Scroll to see our guest arriving...</p>
