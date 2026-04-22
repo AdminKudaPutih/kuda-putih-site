@@ -56,7 +56,7 @@ export default function BookSection() {
   };
 
   return (
-    <section id="book" className="flex flex-col min-h-screen bg-brand-accentSoft/20 dark:bg-zinc-900 px-6 py-24 items-center justify-center text-center relative">
+    <section id="book" className="flex flex-col min-h-screen bg-brand-accentSoft/10 dark:bg-zinc-900 px-6 py-24 items-center justify-center text-center relative">
       <div className="max-w-4xl w-full">
         
         {/* Header */}

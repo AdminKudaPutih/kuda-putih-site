@@ -96,8 +96,8 @@ export default function NavBar() {
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-all hover:text-brand-accentSoft ${activeSection === link.href.replace("#", "")
-                  ? "bg-brand-primary text-brand-cream font-bold scale-105 drop-shadow-sm rounded-full px-4 py-1"
+                className={`text-base font-medium transition-all hover:text-brand-accentSoft ${activeSection === link.href.replace("#", "")
+                  ? "bg-brand-primary text-sm text-brand-cream font-bold scale-105 drop-shadow-sm rounded-full px-2 py-0.5"
                   : "text-brand-primarySoft hover:text-brand-accentSoft"
                   }`}
               >
@@ -115,7 +115,7 @@ export default function NavBar() {
                 className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${
                   activeSection === "book" 
                     ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-white" 
-                    : "bg-brand-accentSoft/50 border-brand-accent shadow-brand-accentSoft dark:bg-emerald-600/50 dark:border-emerald-600 text-brand-accent hover:text-white hover:bg-brand-accent hover:border-brand-accent"
+                    : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-emerald-600/50 dark:border-emerald-600 text-brand-accent hover:text-white hover:bg-brand-accent hover:border-brand-accent"
                 }`}
               >
                 Book Now
