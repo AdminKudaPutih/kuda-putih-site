@@ -1,24 +1,26 @@
-# Edit Room Availability Checker Behavior
+# Update Room Availability UI in Hero & Book Sections
 
 ## Objective
-Update the room availability form so that once a user fills in the required fields and submits, the form disappears and smoothly transitions into a list of available rooms.
+Harmonize the room availability checker behavior across the website while introducing distinct UI presentations for the results in different sections. The `HeroSection` will display results as a compact list, while the `BookSection` will upgrade to detailed room cards.
 
 ## Tasks for Junior Developer
 
-### 1. State Management & Conditional Rendering
-- Implement state (e.g., using `useState`) to track whether the availability search form has been submitted.
-- When the user submits the form, hide the form and display the list of available rooms in its place.
+### 1. Update Hero Section Availability Checker
+- **Behavior Matching:** Modify the availability checker form in the `HeroSection` to match the behavior recently implemented in the `BookSection`. When the user submits the form, it should transition out and disappear.
+- **Results UI (List View):** Display the available rooms as a vertical list in place of the hidden form.
+  - The list items should be simple, containing the **Room Type**, **Features**, and an **"Add to Cart"** button/icon on the trailing right edge.
+- **Animations:** Add a staggered entrance animation for the list items as they appear in the `HeroSection` (e.g., a vertical flipping effect `rotateX: 90` to `0` or a slide-up fade).
 
-### 2. Create Room List Item UI
-- Design a simple, clean list item component for the available rooms.
-- **Content:** Display the **Room Type** (e.g., "Suite Room", "Boarding Room") and **Features** (e.g., "AC, WiFi, En-suite Bathroom") within the item.
-- **Trailing Element:** Add an "Add to Cart" button or a cart icon on the trailing (right) side of the list item.
-  - *Note:* The actual booking and cart logic will be handled in a future task. For now, focus strictly on the UI layout and state change.
-
-### 3. Add Entrance Animations
-- Implement an animation for the room list items as they appear on the screen.
-- The items should have a **vertical flipping effect** (e.g., rotating along the X-axis from 90 degrees to 0 degrees as they enter).
-- *Recommendation:* Use `framer-motion` (since it's already used in the project) to create this staggered vertical flip animation for a polished feel.
+### 2. Redesign Book Section Results into Room Cards
+- **Results UI (Card View):** Refactor the current simple list items in the `BookSection` into more visual, detailed Room Cards.
+- **Card Content:** Each room card must contain the following elements:
+  - **Picture of the room** (Use Next.js `<Image />` component with a placeholder or actual room image)
+  - **Rating**
+  - **Simple description**
+  - **Room Type**
+  - **Features**
+  - **"Add to Cart"** button
+- **Animations:** Implement an entrance animation for these room cards as they appear in the `BookSection` after the form is submitted (e.g., a scale-up or fade-in slide effect).
 
 ## Context
-This task focuses on the visual transition from searching to viewing results. The "Add to Cart" UI is a placeholder for the upcoming booking functionality, which will allow users to flexibly book rooms.
+By differentiating the visual layout of the search results—a quick list view in the Hero section and an immersive card view in the Book section—we cater to different user intents. The Hero section provides fast, scannable options, while the Book section gives users the visual details they need before adding a room to their cart.

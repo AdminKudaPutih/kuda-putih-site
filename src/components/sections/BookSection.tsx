@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 // Mock Room Data
 const mockRooms = [
   {
     id: 1,
     name: "Boarding Room",
+    image: "/images/about-main.png",
     description: "Compact and practical, perfect for solo travelers or students seeking a comfortable and affordable stay.",
     availability: "7/19",
     rating: "4.8",
@@ -21,6 +23,7 @@ const mockRooms = [
   {
     id: 2,
     name: "Suite Room",
+    image: "/images/about-pool.png",
     description: "Spacious and elegant, offering top-tier comfort with a private bathroom and premium amenities.",
     availability: "2/5",
     rating: "4.9",
@@ -150,58 +153,68 @@ export default function BookSection() {
                 </button>
               </div>
               
-              <div className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {mockRooms.map((room, index) => (
                   <motion.div 
                     key={room.id}
-                    initial={{ opacity: 0, rotateX: 90 }}
-                    animate={{ opacity: 1, rotateX: 0 }}
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ 
-                      duration: 0.6, 
+                      duration: 0.5, 
                       delay: index * 0.15,
-                      type: "spring",
-                      bounce: 0.4
+                      ease: "easeOut"
                     }}
-                    style={{ transformOrigin: "top" }}
                     onClick={() => setSelectedRoom(room)}
-                    className="bg-white dark:bg-zinc-950 rounded-2xl shadow-sm border border-zinc-100 dark:border-zinc-800 p-5 flex flex-col sm:flex-row gap-4 sm:items-center justify-between cursor-pointer hover:shadow-md hover:border-brand-accent/30 transition-all group"
+                    className="bg-white dark:bg-zinc-950 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 overflow-hidden cursor-pointer group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col"
                   >
-                    <div className="flex flex-col flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-brand-accent transition-colors">{room.name}</h4>
-                        <span className="text-xs font-bold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2.5 py-1 rounded-full">
-                          {room.availability} Left
-                        </span>
+                    <div className="relative h-48 w-full">
+                      {room.image ? (
+                        <Image src={room.image} alt={room.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      ) : (
+                        <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-400">No Image</div>
+                      )}
+                      <div className="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur text-brand-accent px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">
+                        {room.availability} Available
                       </div>
+                      <div className="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur flex items-center gap-1 text-emerald-700 dark:text-emerald-400 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <span>{room.rating}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h4 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-brand-accent transition-colors mb-2">{room.name}</h4>
+                      <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-4 line-clamp-2">
+                        {room.description}
+                      </p>
                       
-                      <div className="flex flex-wrap gap-2 mt-1">
+                      <div className="flex flex-wrap gap-2 mb-6">
                         {room.features.map((feature, i) => (
-                          <div key={i} className="flex items-center gap-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900 px-2 py-1 rounded-md">
+                          <div key={i} className="flex items-center gap-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded-md">
                             {feature.icon}
                             {feature.name}
                           </div>
                         ))}
                       </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto mt-2 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-zinc-100 dark:border-zinc-800 gap-4">
-                      <div className="text-left sm:text-right">
-                        <span className="block text-xs text-zinc-500 font-medium">Starting from</span>
-                        <span className="font-bold text-lg text-emerald-900 dark:text-emerald-400">{room.price.split(' /')[0]}</span>
+
+                      <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                        <div>
+                          <span className="block text-xs text-zinc-500 font-medium">Price</span>
+                          <span className="font-bold text-lg text-emerald-900 dark:text-emerald-400">{room.price.split(' /')[0]}</span>
+                        </div>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            alert(`Added ${room.name} to Cart`);
+                          }}
+                          className="bg-brand-accent hover:bg-brand-accentSoft text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-md active:scale-95 flex items-center gap-2"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                          <span className="hidden sm:inline text-sm">Add to Cart</span>
+                        </button>
                       </div>
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          alert(`Added ${room.name} to Cart`);
-                        }}
-                        className="bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-white p-3 sm:px-5 sm:py-2.5 rounded-xl font-bold transition-all flex items-center gap-2"
-                        title="Add to Cart"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        <span className="hidden sm:inline">Add to Cart</span>
-                      </button>
                     </div>
                   </motion.div>
                 ))}
