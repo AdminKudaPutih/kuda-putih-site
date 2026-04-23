@@ -91,7 +91,7 @@ export default function NavBar() {
           </div>
 
           {/* Nav Links - Center */}
-          <nav className="hidden md:flex justify-center flex-1 space-x-8">
+          <nav className="hidden md:flex justify-center flex-1 lg:space-x-8 space-x-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}

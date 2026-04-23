@@ -69,7 +69,7 @@ export default function HeroSection() {
             </div>
 
             {/* Right side: Glassmorphism Availability Form or Results */}
-            <div className="max-w-md ml-auto w-full">
+            <div className="max-w-md m-auto lg:ml-auto w-full">
               <AnimatePresence mode="wait">
                 {!hasChecked ? (
                   <motion.div 

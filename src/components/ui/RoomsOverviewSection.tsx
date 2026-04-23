@@ -33,7 +33,7 @@ export default function RoomsOverviewSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-4xl md:text-5xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6"
           >
             Refined Living Spaces
@@ -42,7 +42,7 @@ export default function RoomsOverviewSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl mx-auto"
           >
             Explore our thoughtfully designed accommodations, crafted to provide the ultimate comfort and a premium Bali living experience.
@@ -60,7 +60,7 @@ export default function RoomsOverviewSection() {
                 initial={{ opacity: 0, x: room.alignment === 'left' ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="w-full md:w-1/2"
               >
                 <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group border border-zinc-200 dark:border-zinc-800">
@@ -80,7 +80,7 @@ export default function RoomsOverviewSection() {
                 initial={{ opacity: 0, x: room.alignment === 'left' ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="w-full md:w-1/2 space-y-6"
               >
                 <h3 className="text-3xl font-serif font-bold text-emerald-800 dark:text-emerald-300">
