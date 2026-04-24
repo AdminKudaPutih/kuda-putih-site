@@ -112,7 +112,7 @@ export default function NavBar() {
               ))
             ) : (
               <Link
-                href="/"
+                href="/#about"
                 className="flex items-center gap-2 text-base font-medium text-brand-primarySoft hover:text-brand-accentSoft transition-all"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -218,7 +218,7 @@ export default function NavBar() {
             <Link
               href="/"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-medium text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark transition-colors flex items-center gap-2"
+              className="block px-3 py-2 rounded-md text-base font-medium text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark transition-colors items-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />

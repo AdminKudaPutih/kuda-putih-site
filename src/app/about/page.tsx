@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Bed, Utensils, Flame, Wifi, ShieldCheck, Sparkles, Dumbbell, BedDouble, Car, Map, MapPin } from "lucide-react";
 import FeatureCard from "@/components/ui/FeatureCard";
-import NavBar from "@/components/layout/NavBar";
+import Link from "next/link";
 
 const facilitiesData = [
   {
@@ -76,10 +76,10 @@ const extraServicesData = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-zinc-950">
-      <NavBar />
+      
 
       {/* Hero Header Section */}
-      <section className="relative h-[100dvh] flex flex-col justify-center items-center px-6 overflow-hidden">
+      <section className="relative h-dvh flex flex-col justify-center items-center px-6 overflow-hidden">
         {/* Background Image */}
         <Image 
           src="/images/about-main.png" 
@@ -252,9 +252,9 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="bg-white dark:bg-zinc-900 rounded-3xl p-8 md:p-12 shadow-xl border border-zinc-100 dark:border-zinc-800"
           >
-            <div className="inline-flex items-center justify-center p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-full mb-6">
+            <Link href="/#location" className="inline-flex items-center justify-center p-4 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-900/30 rounded-full mb-6 cursor-pointer ">
               <MapPin className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-            </div>
+            </Link>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
               Strategic Location
             </h2>
