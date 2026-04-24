@@ -1,36 +1,33 @@
-# Enhance About Section and Create Detailed About Page
+# Implement Interactive Facilities Modal in About Section
 
 ## Objective
-Update the existing About section on the homepage to include new features and a call-to-action button, and create a comprehensive standalone "About" page to provide deeper insights into Kuda Putih House, complete with interactive feature cards.
+Enhance the existing facilities list in the About section by turning the list items into interactive buttons. When a user clicks on a facility, a detailed modal should appear displaying an image and a description of that facility, providing a more engaging user experience.
 
 ## Tasks for Junior Developer
 
-### 1. Update the Existing About Section (Homepage)
-- **Add New Features:** Update the features list in the current About section to include:
-  - "Gym and Yoga + trainer"
-  - "Extra beds"
-- **Add Call-to-Action Button:** Place a new button labeled **"Discover About Us! >>"** below the About section content.
-  - This button should link to the new About page (e.g., `/about`).
-  - Ensure the button styling matches the existing design system (vibrant colors, modern typography, hover effects).
+### 1. Update Facilities List
+- **Convert to Buttons:** Modify the existing list items of facilities in the About section so that they function as clickable buttons.
+- **Styling Interactions:** Ensure the buttons have appropriate hover and active states to clearly indicate that they are interactive (e.g., cursor pointer, background color transition, or a subtle scale effect).
 
-### 2. Create the Detailed "About" Page
-- **New Route/Page:** Create a new page route for the detailed About page.
-- **Detailed Description:** Add a comprehensive text section providing more detailed information about Kuda Putih House's history, mission, or environment.
-- **Image Gallery/Showcase:** Include high-quality images to describe the rooms and the surrounding environment. Ensure modern aesthetics and responsive layout.
-- **Interactive Features Grid:** Create a grid layout to showcase the specific features of Kuda Putih House using interactive cards.
+### 2. Create the Facility Detail Modal
+- **Modal Component:** Build a reusable modal (dialog) component to display the details of the selected facility.
+- **Content Structure:** The modal must include:
+  - A high-quality image representing the specific facility.
+  - A detailed text description of the facility.
+  - A clear "Close" button (e.g., an 'X' icon) to dismiss the modal.
+- **Click Outside to Close:** Implement functionality to close the modal if the user clicks on the backdrop/overlay behind the modal content.
+- **Animations:** Add smooth entry and exit animations for the modal overlay and content (e.g., using `framer-motion` for fade and scale transitions).
 
-### 3. Implement Interactive Feature Cards
-- **Card Layout:** Build a reusable feature card component for the grid.
-- **Image Background:** Each card should use an image as its background or main visual to describe the specific feature.
-- **Gradient Overlay:** On the bottom part of the image, add a transparent-to-solid-color gradient.
-  - This gradient area will act as the container for the feature's icon and title.
-- **Hover Interactions:**
-  - When the user hovers over the card, the bottom gradient part should extend upwards to fill the entire card still in gradient background, so not totally hide image.
-  - Upon expansion, reveal a simple description of the feature that was previously hidden.
-  - Add smooth transition animations for both the background expansion and the text reveal. Ensure the animation feels dynamic and premium.
+### 3. Implement Modal State and Data Passing
+- **State Management:** Use React state (`useState`) to manage the modal's visibility (open/closed) and to store the currently selected facility data.
+- **Data Structure:** Ensure each facility item in your data array has an `image` and `description` property that can be passed to the modal.
 
-## Design Aesthetics Reminder
-- Ensure the new page and components adhere to the project's premium design aesthetics.
-- Use smooth gradients, modern typography, and subtle micro-animations.
-- Use Next.js `<Image />` component for optimal performance and ensure responsive design across all devices.
-- Use Next.js `<Link />` component on About Us button for optimal performance
+### 4. Implement Body Scroll Lock (Crucial)
+- **Scroll Prevention:** When the modal is open, the background page **must not** be scrollable.
+  - **Implementation Hint:** You can achieve this by adding a CSS class or inline style (`overflow: hidden`) to the `document.body` when the modal opens, and removing it when the modal closes.
+  - Make sure to use a `useEffect` hook to handle this side effect and properly clean up (restore scrolling) when the component unmounts or the modal closes.
+
+## Design and Technical Reminders
+- Maintain the project's premium design aesthetics (modern typography, smooth shadows, rounded corners).
+- Use the Next.js `<Image />` component for the facility images inside the modal to ensure optimal performance and responsiveness.
+- Ensure the modal layout is responsive—it should look great on both small mobile screens and large desktop monitors.

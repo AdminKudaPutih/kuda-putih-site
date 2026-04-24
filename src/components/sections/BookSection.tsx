@@ -53,11 +53,6 @@ export default function BookSection() {
     }, 1500);
   };
 
-  const handleBookDirectly = (e: React.MouseEvent, roomName: string) => {
-    e.stopPropagation(); // Prevents modal from opening when clicking the 'Book' button on card
-    alert(`Initiating booking process for ${roomName}...`);
-  };
-
   return (
     <section id="book" className="flex flex-col min-h-screen bg-brand-accentSoft/10 dark:bg-zinc-900 px-6 py-24 items-center justify-center text-center relative">
       <div className="max-w-4xl w-full">

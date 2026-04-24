@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   return (
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
       <motion.a
-        href="https://wa.me/6281234567890" // Replace with real WhatsApp number
+        href="https://wa.me/6285333547048" // Replace with real WhatsApp number
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#1EBE5D] transition-colors duration-300"

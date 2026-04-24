@@ -12,13 +12,13 @@ const facilitiesData = [
     title: "19 Boarding Rooms & 2 Suites",
     description: "Experience premium comfort in our meticulously designed rooms, perfect for both short and long-term stays.",
     icon: <Bed className="w-6 h-6" />,
-    imageSrc: "https://images.unsplash.com/photo-1522771731470-41029e54f13a?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "https://images.unsplash.com/photo-1737517302831-e7b8a8eaa97c?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Common Kitchen & Dining Area",
     description: "Cook your favorite meals in our fully equipped communal kitchen and enjoy them in our spacious dining area.",
     icon: <Utensils className="w-6 h-6" />,
-    imageSrc: "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "https://images.unsplash.com/photo-1740759546654-7fac6f620e8c?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Grill BBQ Area",
@@ -54,7 +54,7 @@ const facilitiesData = [
     title: "Extra beds",
     description: "Accommodate additional guests comfortably with our readily available extra beds upon request.",
     icon: <BedDouble className="w-6 h-6" />,
-    imageSrc: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80&w=800"
+    imageSrc: "https://images.unsplash.com/photo-1531576788337-610fa9c67107?qauto=format&fit=crop&q=80&w=800"
   }
 ];
 
@@ -76,23 +76,23 @@ const extraServicesData = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-zinc-950">
-      
+
 
       {/* Hero Header Section */}
       <section className="relative h-dvh flex flex-col justify-center items-center px-6 overflow-hidden">
         {/* Background Image */}
-        <Image 
-          src="/images/about-main.png" 
-          alt="About Kuda Putih House" 
-          fill 
-          className="object-cover z-0" 
+        <Image
+          src="/images/about-main.png"
+          alt="About Kuda Putih House"
+          fill
+          className="object-cover z-0"
           priority
         />
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/60 z-0" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10 pt-16">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -100,7 +100,7 @@ export default function AboutPage() {
           >
             About <br /> <span className="text-brand-accentSoft">Kuda Putih House</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -114,9 +114,9 @@ export default function AboutPage() {
       {/* Detailed Description & Image Gallery */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* Text Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
@@ -140,7 +140,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Image Showcase Gallery */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
@@ -197,7 +197,7 @@ export default function AboutPage() {
                 viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <FeatureCard 
+                <FeatureCard
                   title={facility.title}
                   description={facility.description}
                   icon={facility.icon}
@@ -230,7 +230,7 @@ export default function AboutPage() {
                 viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <FeatureCard 
+                <FeatureCard
                   title={service.title}
                   description={service.description}
                   icon={service.icon}
@@ -259,11 +259,11 @@ export default function AboutPage() {
               Strategic Location
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
-              Nestled perfectly in South Kuta, Kuda Putih House offers an unbeatable balance of peaceful seclusion and incredible accessibility. 
+              Nestled perfectly in South Kuta, Kuda Putih House offers an unbeatable balance of peaceful seclusion and incredible accessibility.
               We are within walking distance or a very short drive to the mesmerizing white sands of <strong>Pantai Gunung Payung</strong> and the famous <strong>Pantai Pandawa</strong>.
             </p>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Experience the best of Bali's southern peninsula, with easy access to top-tier cafes, cultural landmarks, and surfing spots, all while having a quiet sanctuary to return to at the end of the day.
+              Experience the best of Bali&apos;s southern peninsula, with easy access to top-tier cafes, cultural landmarks, and surfing spots, all while having a quiet sanctuary to return to at the end of the day.
             </p>
           </motion.div>
         </div>
