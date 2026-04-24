@@ -1,15 +1,17 @@
 import Image from "next/image";
-import { Bed, Utensils, TreePine, Flame, Car, MapPin, Wifi, ShieldCheck, Sparkles, Map } from "lucide-react";
+import Link from "next/link";
+import { Bed, Utensils, Flame, Car, MapPin, Wifi, ShieldCheck, Sparkles, Map, Dumbbell, BedDouble, ArrowRight } from "lucide-react";
 
 export default function AboutSection() {
   const facilities = [
     { icon: <Bed className="w-5 h-5" />, label: "19 Boarding Rooms & 2 Suites" },
     { icon: <Utensils className="w-5 h-5" />, label: "Common Kitchen & Dining Area" },
     { icon: <Flame className="w-5 h-5" />, label: "Grill BBQ Area" },
-    { icon: <TreePine className="w-5 h-5" />, label: "Mini Garden" },
     { icon: <Wifi className="w-5 h-5" />, label: "Free High-Speed Wi-Fi" },
     { icon: <ShieldCheck className="w-5 h-5" />, label: "Secure Parking Area" },
     { icon: <Sparkles className="w-5 h-5" />, label: "Weekly Cleaning" },
+    { icon: <Dumbbell className="w-5 h-5" />, label: "Gym and Yoga + trainer" },
+    { icon: <BedDouble className="w-5 h-5" />, label: "Extra beds" },
   ];
 
   const services = [
@@ -87,13 +89,18 @@ export default function AboutSection() {
             ))}
           </div>
           
-          <div className="mt-8 flex items-center p-4 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-100 dark:border-zinc-800">
+          <div className="mt-8 flex items-center p-4 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-100 dark:border-zinc-800 mb-8">
             <MapPin className="text-emerald-600 dark:text-emerald-400 mr-4 w-8 h-8 flex-shrink-0" />
             <div>
               <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">Strategic Location</h4>
               <p className="text-sm text-zinc-600 dark:text-zinc-400">Walking distance or short drive to Pantai Gunung Payung & Pantai Pandawa.</p>
             </div>
           </div>
+
+          <Link href="/about" className="inline-flex items-center justify-center bg-brand-accent hover:bg-brand-accentSoft text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.3)] hover:shadow-[0_0_30px_rgba(217,108,59,0.5)] transform active:scale-[0.98] transition-all tracking-wide self-start group">
+            Discover About Us! 
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>
