@@ -13,8 +13,8 @@ export default function AboutSection() {
   const facilities: Facility[] = [
     { 
       icon: <Bed className="w-5 h-5" />, 
-      label: "19 Boarding Rooms & 2 Suites",
-      description: "Our property features 19 well-appointed boarding rooms and 2 luxury suites, each designed with comfort and privacy in mind. Every room is fully furnished and includes modern amenities for a seamless living experience.",
+      label: "19 Basic Rooms & 2 Suites",
+      description: "Our property features 19 well-appointed basic rooms and 2 luxury suites, each designed with comfort and privacy in mind. Every room is fully furnished and includes modern amenities for a seamless living experience.",
       image: "https://images.unsplash.com/photo-1737517302831-e7b8a8eaa97c?auto=format&fit=crop&q=80&w=800"
     },
     { 

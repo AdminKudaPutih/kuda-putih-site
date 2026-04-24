@@ -8,7 +8,7 @@ import Image from "next/image";
 const mockRooms = [
   {
     id: 1,
-    name: "Boarding Room",
+    name: "Basic Room",
     image: "/images/about-main.png",
     description: "Compact and practical, perfect for solo travelers or students seeking a comfortable and affordable stay.",
     availability: "7/19",

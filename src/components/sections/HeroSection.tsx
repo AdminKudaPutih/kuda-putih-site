@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const mockRooms = [
   {
     id: 1,
-    name: "Boarding Room",
+    name: "Basic Room",
     availability: "7/19",
     price: "Rp 1.500.000 / month",
     features: [

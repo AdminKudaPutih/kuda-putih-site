@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const facilitiesData = [
   {
-    title: "19 Boarding Rooms & 2 Suites",
+    title: "19 Basic Rooms & 2 Suites",
     description: "Experience premium comfort in our meticulously designed rooms, perfect for both short and long-term stays.",
     icon: <Bed className="w-6 h-6" />,
     imageSrc: "https://images.unsplash.com/photo-1737517302831-e7b8a8eaa97c?auto=format&fit=crop&q=80&w=800"

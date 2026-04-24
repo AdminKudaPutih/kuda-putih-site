@@ -1,33 +1,36 @@
-# Implement Interactive Facilities Modal in About Section
+# Update Room Section and Create Detailed Room Page
 
 ## Objective
-Enhance the existing facilities list in the About section by turning the list items into interactive buttons. When a user clicks on a facility, a detailed modal should appear displaying an image and a description of that facility, providing a more engaging user experience.
+Refactor the existing room sections to update room terminology, add interactive room detail modals, and build a dedicated, comprehensive "Room Page" to showcase all accommodation options with a seamless booking experience. For "Vibrant Environtment" part, its "View detail room" will display the facilities of Kuda Putih House, not the room.
 
 ## Tasks for Junior Developer
 
-### 1. Update Facilities List
-- **Convert to Buttons:** Modify the existing list items of facilities in the About section so that they function as clickable buttons.
-- **Styling Interactions:** Ensure the buttons have appropriate hover and active states to clearly indicate that they are interactive (e.g., cursor pointer, background color transition, or a subtle scale effect).
+### 1. Update Room Terminology (Global)
+- **Rename "Boarding rooms" to "Basic Rooms":** Search across the entire codebase (all pages, sections, and data arrays) and replace every instance of "Boarding rooms" or "Boarding room" with "Basic Rooms" (or "Basic Room").
 
-### 2. Create the Facility Detail Modal
-- **Modal Component:** Build a reusable modal (dialog) component to display the details of the selected facility.
-- **Content Structure:** The modal must include:
-  - A high-quality image representing the specific facility.
-  - A detailed text description of the facility.
-  - A clear "Close" button (e.g., an 'X' icon) to dismiss the modal.
-- **Click Outside to Close:** Implement functionality to close the modal if the user clicks on the backdrop/overlay behind the modal content.
-- **Animations:** Add smooth entry and exit animations for the modal overlay and content (e.g., using `framer-motion` for fade and scale transitions).
+### 2. Enhance the Homepage Room Section
+- **Room Detail Modals:** 
+  - Update the "View room detail" button on every room type card so that it triggers a pop-up modal.
+  - **Modal Content:** The modal must display the room type title, a comprehensive description, a list of benefits/facilities (using icons), and user ratings (e.g., 4.8/5 stars).
+  - **Scroll Lock:** Remember to implement a body scroll lock (`overflow: hidden` on the body) when the modal is open.
+- **Navigation Button:**
+  - At the bottom of the room section, add a clear call-to-action button (e.g., "Explore All Rooms") that navigates the user to the newly created Room Page.
 
-### 3. Implement Modal State and Data Passing
-- **State Management:** Use React state (`useState`) to manage the modal's visibility (open/closed) and to store the currently selected facility data.
-- **Data Structure:** Ensure each facility item in your data array has an `image` and `description` property that can be passed to the modal.
+### 3. Create the Dedicated "Room Page"
+- **New Route:** Create a new page route at `src/app/rooms/page.tsx` (or similar depending on routing structure).
+- **Nav Bar Behavior:** Implement the exact same Navigation Bar behavior as seen on the About page (e.g., transparent background at the top that turns solid upon scrolling).
+- **Hero Section:** Build a visually striking hero header section at the top of the room page featuring a high-quality background image and engaging typography.
+- **Room Type Details:** 
+  - Below the hero section, create a well-structured layout to showcase every room type.
+  - For each room type, you must include:
+    - The room title and a detailed description.
+    - Specific room facilities accompanied by relevant icons (e.g., using `lucide-react`).
+    - User ratings.
+    - Current availability status of the room (e.g., "Available", "Only 2 left!").
+    - Room Price
+- **"Add to Chart"**
+  - Directly below the details for each room type, add a prominent "Add to Chart" button that includes a relevant icon (like a cart or calendar icon).
 
-### 4. Implement Body Scroll Lock (Crucial)
-- **Scroll Prevention:** When the modal is open, the background page **must not** be scrollable.
-  - **Implementation Hint:** You can achieve this by adding a CSS class or inline style (`overflow: hidden`) to the `document.body` when the modal opens, and removing it when the modal closes.
-  - Make sure to use a `useEffect` hook to handle this side effect and properly clean up (restore scrolling) when the component unmounts or the modal closes.
-
-## Design and Technical Reminders
-- Maintain the project's premium design aesthetics (modern typography, smooth shadows, rounded corners).
-- Use the Next.js `<Image />` component for the facility images inside the modal to ensure optimal performance and responsiveness.
-- Ensure the modal layout is responsive—it should look great on both small mobile screens and large desktop monitors.
+### 4. Technical & Design Requirements
+- **Responsiveness:** Ensure that all new components, especially the new Room Page and the room detail modals, are fully responsive and function flawlessly across all screen sizes (mobile, tablet, desktop).
+- **Design Consistency:** Strictly adhere to the project's premium design aesthetics, utilizing the custom color tokens (e.g., `bg-brand-primary`, `text-brand-accent`) and smooth micro-animations (e.g., `framer-motion` for the modals).
