@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Bed, Utensils, Flame, Wifi, ShieldCheck, Sparkles, Dumbbell, BedDouble } from "lucide-react";
+import { Bed, Utensils, Flame, Wifi, ShieldCheck, Sparkles, Dumbbell, BedDouble, Car, Map, MapPin } from "lucide-react";
 import FeatureCard from "@/components/ui/FeatureCard";
 import NavBar from "@/components/layout/NavBar";
 
@@ -58,28 +58,53 @@ const facilitiesData = [
   }
 ];
 
+const extraServicesData = [
+  {
+    title: "Motor Bike & Car Rental",
+    description: "Explore the beautiful island of Bali at your own pace with our reliable and convenient on-site vehicle rental services.",
+    icon: <Car className="w-6 h-6" />,
+    imageSrc: "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Professional Tour Guide Service",
+    description: "Discover hidden gems and local culture with our experienced professional tour guides ready to tailor your Bali adventure.",
+    icon: <Map className="w-6 h-6" />,
+    imageSrc: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-zinc-950">
       <NavBar />
 
       {/* Hero Header Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-brand-accentSoft/10 dark:bg-zinc-900/50 z-0" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      <section className="relative h-[100dvh] flex flex-col justify-center items-center px-6 overflow-hidden">
+        {/* Background Image */}
+        <Image 
+          src="/images/about-main.png" 
+          alt="About Kuda Putih House" 
+          fill 
+          className="object-cover z-0" 
+          priority
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 z-0" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10 pt-16">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-7xl font-heading font-bold text-emerald-900 dark:text-emerald-400 mb-6"
+            className="text-5xl md:text-7xl/20 font-heading font-bold text-white mb-6"
           >
-            About Kuda Putih
+            About <br /> <span className="text-brand-accentSoft">Kuda Putih House</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-zinc-200 max-w-2xl mx-auto leading-relaxed drop-shadow-md"
           >
             A sanctuary of comfort, community, and tranquility nestled in the heart of South Kuta, Bali.
           </motion.p>
@@ -183,6 +208,79 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Extra Services Section */}
+      <section className="py-24 px-6 bg-white dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+              Extra Services
+            </h2>
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+              Make your stay even more seamless with our additional tailored services.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {extraServicesData.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <FeatureCard 
+                  title={service.title}
+                  description={service.description}
+                  icon={service.icon}
+                  imageSrc={service.imageSrc}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Strategic Location Section */}
+      <section className="py-10 px-6 bg-zinc-50 dark:bg-zinc-900/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6 }}
+            className="bg-white dark:bg-zinc-900 rounded-3xl p-8 md:p-12 shadow-xl border border-zinc-100 dark:border-zinc-800"
+          >
+            <div className="inline-flex items-center justify-center p-4 bg-emerald-50 dark:bg-emerald-900/30 rounded-full mb-6">
+              <MapPin className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+              Strategic Location
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              Nestled perfectly in South Kuta, Kuda Putih House offers an unbeatable balance of peaceful seclusion and incredible accessibility. 
+              We are within walking distance or a very short drive to the mesmerizing white sands of <strong>Pantai Gunung Payung</strong> and the famous <strong>Pantai Pandawa</strong>.
+            </p>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Experience the best of Bali's southern peninsula, with easy access to top-tier cafes, cultural landmarks, and surfing spots, all while having a quiet sanctuary to return to at the end of the day.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      {/* <footer className="bg-brand-primary text-brand-cream py-12 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl font-heading font-bold mb-2">Kuda Putih House</h2>
+            <p className="text-brand-cream/70 text-sm">A sanctuary of comfort in South Kuta, Bali.</p>
+          </div>
+          <div className="text-sm text-brand-cream/60">
+            &copy; {new Date().getFullYear()} Kuda Putih House. All rights reserved.
+          </div>
+        </div>
+      </footer> */}
 
     </main>
   );

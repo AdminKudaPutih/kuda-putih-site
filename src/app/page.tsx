@@ -5,7 +5,7 @@ import MemorySection from "../components/sections/MemorySection";
 import LocationSection from "../components/sections/LocationSection";
 import BookSection from "../components/sections/BookSection";
 import FAQSection from "../components/sections/FAQSection";
-import Footer from "../components/layout/Footer";
+
 
 export default function Home() {
   return (
@@ -28,7 +28,7 @@ export default function Home() {
       {/* FAQ Section */}
       <FAQSection />
 
-      <Footer />
+
     </div>
   );
 }
