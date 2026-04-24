@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -12,6 +13,8 @@ const navLinks = [
 ];
 
 export default function NavBar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isAtTop, setIsAtTop] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -33,6 +36,8 @@ export default function NavBar() {
 
   // Observer for active scroll state
   useEffect(() => {
+    if (pathname !== "/") return;
+
     const observers = new Map();
 
     const observerOptions = {
@@ -64,7 +69,7 @@ export default function NavBar() {
         sectionObserver.unobserve(element);
       });
     };
-  }, []);
+  }, [pathname]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -83,7 +88,7 @@ export default function NavBar() {
 
           {/* Logo - Left */}
           <div className="shrink-0 flex items-center md:w-1/4">
-            <Link href="#home" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <span className={`font-heading text-xl sm:text-2xl font-bold tracking-tight text-brand-primary`}>
                 Kuda Putih House
               </span>
@@ -92,35 +97,50 @@ export default function NavBar() {
 
           {/* Nav Links - Center */}
           <nav className="hidden md:flex justify-center flex-1 lg:space-x-8 space-x-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-base font-medium transition-all hover:text-brand-accentSoft ${activeSection === link.href.replace("#", "")
-                  ? "bg-brand-primary text-sm text-brand-cream font-bold scale-105 drop-shadow-sm rounded-full px-2 py-0.5"
-                  : "text-brand-primarySoft hover:text-brand-accentSoft"
-                  }`}
+            {isHomePage ? (
+              navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-base font-medium transition-all hover:text-brand-accentSoft ${activeSection === link.href.replace("#", "")
+                    ? "bg-brand-primary text-sm text-brand-cream font-bold scale-105 drop-shadow-sm rounded-full px-2 py-0.5"
+                    : "text-brand-primarySoft hover:text-brand-accentSoft"
+                    }`}
+                >
+                  {link.name}
+                </a>
+              ))
+            ) : (
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-base font-medium text-brand-primarySoft hover:text-brand-accentSoft transition-all"
               >
-                {link.name}
-              </a>
-            ))}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                </svg>
+                Back to Home Page
+              </Link>
+            )}
           </nav>
 
           {/* CTA - Right */}
           <div className="hidden md:flex items-center justify-end w-1/4">
-            <div className="relative inline-flex group">
-              <div className="absolute inset-0 rounded-full border-2 border-brand-accent bg-brand-accentSoft/50 pulse-soft opacity-75"></div>
-              <a
-                href="#book"
-                className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${
-                  activeSection === "book" 
-                    ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-white" 
-                    : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-emerald-600/50 dark:border-emerald-600 text-brand-accent hover:text-white hover:bg-brand-accent hover:border-brand-accent"
-                }`}
-              >
-                Book Now
-              </a>
-            </div>
+           
+              <div className="relative inline-flex group">
+                <div className="absolute inset-0 rounded-full border-2 border-brand-accent bg-brand-accentSoft/50 pulse-soft opacity-75"></div>
+                <Link
+
+                  href="/#book"
+                  className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${
+                    activeSection === "book" 
+                      ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-white" 
+                      : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-emerald-600/50 dark:border-emerald-600 text-brand-accent hover:text-white hover:bg-brand-accent hover:border-brand-accent"
+                  }`}
+                >
+                  Book Now
+                </Link>
+              </div>
+            
           </div>
 
           {/* Mobile menu button */}
@@ -164,33 +184,48 @@ export default function NavBar() {
           : "bg-brand-cream/50 backdrop-blur-md shadow-sm pointer-events-auto"
         }`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
+          {isHomePage ? (
+            <>
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${activeSection === link.href.replace("#", "")
+                    ? "text-brand-primary"
+                    : "text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark"
+                    }`}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="relative mt-4">
+                <div className="absolute inset-0 rounded-md border-2 border-brand-accent animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-75"></div>
+                <a
+                  href="#book"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`relative block px-3 py-2 rounded-md border-2 text-base font-bold transition-colors text-center text-brand-cream ${
+                    activeSection === "book"
+                      ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft"
+                      : "bg-brand-accentSoft/50 border-brand-accent shadow-brand-accentSoft hover:bg-brand-accent hover:border-brand-accent"
+                  }`}
+                >
+                  Book Now
+                </a>
+              </div>
+            </>
+          ) : (
+            <Link
+              href="/"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${activeSection === link.href.replace("#", "")
-                ? "text-brand-primary"
-                : "text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark"
-                }`}
+              className="block px-3 py-2 rounded-md text-base font-medium text-brand-darkSoft hover:bg-brand-creamSoft hover:text-brand-dark transition-colors flex items-center gap-2"
             >
-              {link.name}
-            </a>
-          ))}
-          <div className="relative mt-4">
-            <div className="absolute inset-0 rounded-md border-2 border-brand-accent animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-75"></div>
-            <a
-              href="#book"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`relative block px-3 py-2 rounded-md border-2 text-base font-bold transition-colors text-center text-brand-cream ${
-                activeSection === "book"
-                  ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft"
-                  : "bg-brand-accentSoft/50 border-brand-accent shadow-brand-accentSoft hover:bg-brand-accent hover:border-brand-accent"
-              }`}
-            >
-              Book Now
-            </a>
-          </div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+              </svg>
+              Back to Home Page
+            </Link>
+          )}
         </div>
       </div>
     </header>
