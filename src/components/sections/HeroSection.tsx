@@ -54,7 +54,7 @@ export default function HeroSection() {
         {/* Full Background Image */}
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 z-0 bg-zinc-900 origin-top"
+          className="absolute inset-0 z-0 bg-brand-dark origin-top"
         >
           <Image width={1920} height={1080} src="/hero_bg.png" alt="Kuda Putih House Bali" className="w-full h-full object-cover opacity-90 scale-110" priority />
           <div className="absolute inset-0 bg-brand-dark/50 bg-linear-to-t from-brand-dark/80 via-transparent to-brand-dark/20 mix-blend-multiply"></div>
@@ -64,13 +64,13 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
             {/* Left side: SEO Optimized Short Copywriting */}
             <div className="text-left filter drop-shadow-lg">
-               <span className="inline-block py-1.5 px-4 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-white text-xs font-semibold mb-6 tracking-widest uppercase shadow-sm">
+               <span className="inline-block py-1.5 px-4 rounded-full bg-brand-creamSoft/30 backdrop-blur-md border border-brand-creamSoft/20 text-brand-creamSoft text-xs font-semibold mb-6 tracking-widest uppercase shadow-sm">
                 Discover Kuda Putih House
               </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-brand-creamSoft mb-6 leading-tight">
                 Cozy Living Near <span className="text-brand-accent">Pantai Gunung Payung</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-lg font-light leading-relaxed">
+              <p className="text-xl md:text-2xl text-brand-creamSoft/90 mb-8 max-w-lg font-light leading-relaxed">
                 Experience safety, tranquility, and modern comfort in the heart of South Kuta, Bali.
               </p>
             </div>
@@ -84,37 +84,37 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="bg-black/40 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border border-white/20 transform lg:translate-x-4 w-full"
+                    className="bg-brand-dark/40 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border border-brand-creamSoft/20 transform lg:translate-x-4 w-full"
                   >
-                    <h2 className="text-2xl font-heading font-bold text-white mb-6">Reserve Your Room</h2>
+                    <h2 className="text-2xl font-heading font-bold text-brand-creamSoft mb-6">Reserve Your Room</h2>
                     <form onSubmit={handleCheckAvailability} className="space-y-5">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-xs font-medium text-white/80 uppercase tracking-widest mb-2">Check-in</label>
+                          <label className="block text-xs font-medium text-brand-creamSoft/80 uppercase tracking-widest mb-2">Check-in</label>
                           <input 
                             type="date" 
                             required
-                            className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all "
+                            className="w-full px-4 py-3 rounded-xl border border-brand-creamSoft/20 bg-brand-creamSoft/10 text-brand-creamSoft placeholder-brand-creamSoft/50 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all "
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-medium text-white/80 uppercase tracking-widest mb-2">Check-out</label>
+                          <label className="block text-xs font-medium text-brand-creamSoft/80 uppercase tracking-widest mb-2">Check-out</label>
                           <input 
                             type="date" 
                             required
-                            className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all "
+                            className="w-full px-4 py-3 rounded-xl border border-brand-creamSoft/20 bg-brand-creamSoft/10 text-brand-creamSoft placeholder-brand-creamSoft/50 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all "
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-white/80 uppercase tracking-widest mb-2">Guests</label>
+                        <label className="block text-xs font-medium text-brand-creamSoft/80 uppercase tracking-widest mb-2">Guests</label>
                         <div className="relative">
-                          <select className="w-full px-4 py-3 rounded-xl border border-white/20 bg-brand-dark/50 text-white focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all appearance-none cursor-pointer">
-                            <option className="text-black">1 Person</option>
-                            <option className="text-black">2 People</option>
-                            <option className="text-black">3 People +</option>
+                          <select className="w-full px-4 py-3 rounded-xl border border-brand-creamSoft/20 bg-brand-dark/50 text-brand-creamSoft focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all appearance-none cursor-pointer">
+                            <option className="text-brand-dark">1 Person</option>
+                            <option className="text-brand-dark">2 People</option>
+                            <option className="text-brand-dark">3 People +</option>
                           </select>
-                          <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-white">
+                          <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-brand-creamSoft">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
@@ -124,11 +124,11 @@ export default function HeroSection() {
                       <button 
                         type="submit"
                         disabled={isChecking}
-                        className="w-full bg-brand-accent hover:bg-brand-accentSoft text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.3)] hover:shadow-[0_0_30px_rgba(217,108,59,0.5)] transform active:scale-[0.98] transition-all tracking-wide disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+                        className="w-full bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.3)] hover:shadow-[0_0_30px_rgba(217,108,59,0.5)] transform active:scale-[0.98] transition-all tracking-wide disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                       >
                         {isChecking ? (
                           <>
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-brand-creamSoft" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                             Checking...
                           </>
                         ) : "Check Availability"}
@@ -143,10 +143,10 @@ export default function HeroSection() {
                     className="w-full transform lg:translate-x-4"
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-bold text-white border-l-4 border-brand-accent pl-2">Available Rooms</h3>
+                      <h3 className="text-xl font-bold text-brand-creamSoft border-l-4 border-brand-accent pl-2">Available Rooms</h3>
                       <button 
                         onClick={() => setHasChecked(false)}
-                        className="text-xs font-medium text-white/70 hover:text-white transition-colors underline"
+                        className="text-xs font-medium text-brand-creamSoft/70 hover:text-brand-creamSoft transition-colors underline"
                       >
                         Change Dates
                       </button>
@@ -165,18 +165,18 @@ export default function HeroSection() {
                             bounce: 0.4
                           }}
                           style={{ transformOrigin: "top" }}
-                          className="bg-black/50  backdrop-blur-xl rounded-2xl border border-white/10 p-4 flex items-center justify-between hover:bg-black/70 hover:border-brand-accentSoft transition-colors"
+                          className="bg-brand-dark/50  backdrop-blur-xl rounded-2xl border border-brand-creamSoft/10 p-4 flex items-center justify-between hover:bg-brand-dark/70 hover:border-brand-accentSoft transition-colors"
                         >
                           <div className="flex flex-col">
-                            <h4 className="text-white font-bold">{room.name}</h4>
+                            <h4 className="text-brand-creamSoft font-bold">{room.name}</h4>
                             <div className="flex items-center gap-2 mt-1">
-                              <span className="text-[10px] font-bold bg-white/10 text-white/90 px-2 py-0.5 rounded-full">
+                              <span className="text-[10px] font-bold bg-brand-creamSoft/10 text-brand-creamSoft/90 px-2 py-0.5 rounded-full">
                                 {room.availability} Left
                               </span>
                             </div>
                             <div className="flex flex-wrap gap-2 mt-2">
                               {room.features.slice(0,2).map((feature, i) => (
-                                <div key={i} className="flex items-center gap-1 text-[10px] text-white/70 bg-white/5 px-1.5 py-0.5 rounded-md">
+                                <div key={i} className="flex items-center gap-1 text-[10px] text-brand-creamSoft/70 bg-brand-creamSoft/55 px-1.5 py-0.5 rounded-md">
                                   {feature.icon}
                                   {feature.name}
                                 </div>
@@ -186,7 +186,7 @@ export default function HeroSection() {
                           
                           <button 
                             onClick={() => alert(`Added ${room.name} to Cart`)}
-                            className="bg-brand-accent hover:bg-brand-accentSoft text-white p-2.5 rounded-xl transition-all ml-4"
+                            className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft p-2.5 rounded-xl transition-all ml-4"
                             title="Add to Cart"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,7 +204,7 @@ export default function HeroSection() {
         </div>
 
         {/* Cloud Transition Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-zinc-950 via-brand-creamSoft/60 dark:via-zinc-950/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-brand-dark via-brand-creamSoft/60 dark:via-brand-dark/60 to-transparent z-10 pointer-events-none" />
       </section>
   );
 }

@@ -19,7 +19,7 @@ export default function LocationSection() {
     <section
       id="location"
       ref={sectionRef}
-      className="py-24 px-6 bg-white dark:bg-zinc-950 overflow-hidden"
+      className="py-24 px-6 bg-brand-creamSoft dark:bg-brand-dark overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -32,7 +32,7 @@ export default function LocationSection() {
             viewport={{ once: false }}
             className="w-full lg:w-1/2"
           >
-            <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-zinc-800">
+            <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.8643241088!2d115.1846!3d-8.8354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNTAnMDcuNCJTIDExNcKwMTEnMDQuNiJF!5e0!3m2!1sen!2sid!4v1713680000000!5m2!1sen!2sid&q=55FQ%2B7V%20Kutuh"
                 width="100%"
@@ -43,13 +43,13 @@ export default function LocationSection() {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Kuda Putih House Location"
               />
-              <div className="absolute top-4 left-4 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-emerald-100 dark:border-zinc-800 flex items-center gap-3">
-                <div className="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-xl">
-                  <MapPin className="text-emerald-700 dark:text-emerald-400 w-5 h-5" />
+              <div className="absolute top-4 left-4 bg-brand-creamSoft/90 dark:bg-brand-dark/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 flex items-center gap-3">
+                <div className="bg-brand-primary/10 dark:bg-brand-primarySoft/20 p-2 rounded-xl">
+                  <MapPin className="text-brand-primary dark:text-brand-primarySoft w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Our Location</p>
-                  <p className="text-sm font-serif font-bold text-emerald-900 dark:text-emerald-100">Kutuh, Badung, Bali</p>
+                  <p className="text-xs font-bold text-brand-darkSoft dark:text-brand-cream uppercase tracking-wider">Our Location</p>
+                  <p className="text-sm font-serif font-bold text-brand-primary dark:text-brand-creamSoft">Kutuh, Badung, Bali</p>
                 </div>
               </div>
             </div>
@@ -63,10 +63,10 @@ export default function LocationSection() {
               transition={{ duration: 0.6 }}
               viewport={{ once: false }}
             >
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft mb-6">
                 Strategic & Serene
               </h2>
-              <div className="space-y-6 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
+              <div className="space-y-6 text-brand-darkSoft dark:text-brand-cream text-lg leading-relaxed">
                 <p>
                   Nestled in the tranquil area of Kutuh, Kuda Putih House offers the perfect balance between peaceful living and proximity to Bali&apos;s most iconic destinations.
                 </p>
@@ -74,12 +74,12 @@ export default function LocationSection() {
                   Just a short drive away from the breathtaking Pandawa Beach and the majestic Melasti Beach, our location is ideal for those who appreciate natural beauty without sacrificing convenience.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  <div className="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50/50 dark:bg-zinc-900/50 border border-emerald-100/50 dark:border-zinc-800">
-                    <Navigation className="text-emerald-600 dark:text-emerald-400 w-5 h-5 mt-1" />
+                  <div className="flex items-start gap-3 p-4 rounded-2xl bg-brand-primary/10 dark:bg-brand-dark/50 border border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
+                    <Navigation className="text-brand-primary dark:text-brand-primarySoft w-5 h-5 mt-1" />
                     <p className="text-sm font-medium">5 mins to Pandawa Beach</p>
                   </div>
-                  <div className="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50/50 dark:bg-zinc-900/50 border border-emerald-100/50 dark:border-zinc-800">
-                    <Navigation className="text-emerald-600 dark:text-emerald-400 w-5 h-5 mt-1" />
+                  <div className="flex items-start gap-3 p-4 rounded-2xl bg-brand-primary/10 dark:bg-brand-dark/50 border border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
+                    <Navigation className="text-brand-primary dark:text-brand-primarySoft w-5 h-5 mt-1" />
                     <p className="text-sm font-medium">10 mins to Melasti Beach</p>
                   </div>
                 </div>
@@ -87,17 +87,17 @@ export default function LocationSection() {
             </motion.div>
 
             {/* Car Animation Container */}
-            <div className="relative h-12 w-full bg-zinc-100 dark:bg-zinc-900/50 rounded-2xl overflow-hidden border-b-4 border-black dark:border-zinc-800">
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-zinc-300 dark:bg-zinc-700" /> {/* Road Line */}
+            <div className="relative h-12 w-full bg-brand-cream/50 dark:bg-brand-darkSoft/30 rounded-2xl overflow-hidden border-b-4 border-brand-dark dark:border-brand-creamSoft/10">
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-darkSoft/40 dark:bg-brand-cream/20" /> {/* Road Line */}
               <motion.div
                 style={{ left: carPosition, x: "-50%" }}
                 className="absolute bottom-1 flex flex-col items-center"
               >
-                <Car className="text-emerald-700 dark:text-emerald-400 w-10 h-10" />
+                <Car className="text-brand-primary dark:text-brand-primarySoft w-10 h-10" />
 
               </motion.div>
             </div>
-            <p className="text-sm text-zinc-500 italic text-center">Scroll to see our guest arriving...</p>
+            <p className="text-sm text-brand-darkSoft italic text-center">Scroll to see our guest arriving...</p>
           </div>
         </div>
       </div>

@@ -61,7 +61,7 @@ export default function RoomsOverviewSection() {
   const [selectedRoom, setSelectedRoom] = useState<RoomDetails | null>(null);
 
   return (
-    <section id="rooms" className="py-24 px-6 bg-brand-primarySoft/10 dark:bg-zinc-950 overflow-x-hidden">
+    <section id="rooms" className="py-24 px-6 bg-brand-primarySoft/10 dark:bg-brand-dark overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <motion.h2 
@@ -78,7 +78,7 @@ export default function RoomsOverviewSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: false }}
-            className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl mx-auto"
+            className="text-brand-darkSoft dark:text-brand-cream text-lg max-w-2xl mx-auto"
           >
             Explore our thoughtfully designed accommodations, crafted to provide the ultimate comfort and a premium Bali living experience.
           </motion.p>
@@ -98,7 +98,7 @@ export default function RoomsOverviewSection() {
                 viewport={{ once: false }}
                 className="w-full md:w-1/2"
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group border border-zinc-200 dark:border-zinc-800">
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group border border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
                   <Image
                     src={room.image}
                     alt={room.title}
@@ -106,7 +106,7 @@ export default function RoomsOverviewSection() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-t from-brand-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </motion.div>
 
@@ -121,7 +121,7 @@ export default function RoomsOverviewSection() {
                 <h3 className="text-3xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft">
                   {room.title}
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
+                <p className="text-brand-darkSoft dark:text-brand-cream text-lg leading-relaxed">
                   {room.description}
                 </p>
                 <div className="pt-4">
@@ -147,7 +147,7 @@ export default function RoomsOverviewSection() {
         >
           <Link 
             href="/rooms" 
-            className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white rounded-full font-bold shadow-lg hover:bg-brand-primarySoft transition-all hover:scale-105 group"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-creamSoft rounded-full font-bold shadow-lg hover:bg-brand-primarySoft transition-all hover:scale-105 group"
           >
             Explore All Rooms
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">

@@ -73,7 +73,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="flex flex-col min-h-screen bg-brand-creamSoft dark:bg-zinc-950 px-6 py-24 items-center justify-center">
+    <section id="about" className="flex flex-col min-h-screen bg-brand-creamSoft dark:bg-brand-dark px-6 py-24 items-center justify-center">
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Side: Image Grid */}
         <motion.div 
@@ -83,7 +83,7 @@ export default function AboutSection() {
           transition={{ duration: 0.8 }}
           className="grid grid-cols-2 gap-4 h-full min-h-[350px] md:min-h-[500px]"
         >
-          <div className="relative col-span-1 row-span-2 overflow-hidden rounded-2xl group border border-zinc-100 dark:border-zinc-800 shadow-lg">
+          <div className="relative col-span-1 row-span-2 overflow-hidden rounded-2xl group border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 shadow-lg">
             <Image
               src="/images/about-main.png"
               alt="Kuda Putih House Exterior"
@@ -91,7 +91,7 @@ export default function AboutSection() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
-          <div className="relative col-span-1 overflow-hidden rounded-2xl group border border-zinc-100 dark:border-zinc-800 shadow-lg">
+          <div className="relative col-span-1 overflow-hidden rounded-2xl group border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 shadow-lg">
             <Image
               src="/images/about-pool.png"
               alt="Swimming Pool"
@@ -99,7 +99,7 @@ export default function AboutSection() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
-          <div className="relative col-span-1 overflow-hidden rounded-2xl group border border-zinc-100 dark:border-zinc-800 shadow-lg">
+          <div className="relative col-span-1 overflow-hidden rounded-2xl group border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 shadow-lg">
             <Image
               src="/images/about-garden.png"
               alt="Mini Garden"
@@ -116,7 +116,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.5 }}
-            className="text-4xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6"
+            className="text-4xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft mb-6"
           >
             Discover Kuda Putih House
           </motion.h2>
@@ -125,7 +125,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-zinc-600 dark:text-zinc-400 text-lg mb-8 leading-relaxed"
+            className="text-brand-darkSoft dark:text-brand-cream text-lg mb-8 leading-relaxed"
           >
             Welcome to Kuda Putih House, a premium boarding house strategically located in Kuta Selatan, Badung, Bali. 
             Designed for those who seek comfort and tranquility, our accommodation offers an exceptional living experience 
@@ -137,7 +137,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-2xl font-semibold text-emerald-800 dark:text-emerald-300 mb-4"
+            className="text-2xl font-semibold text-brand-primary dark:text-brand-primarySoft mb-4"
           >
             Facilities
           </motion.h3>
@@ -150,12 +150,12 @@ export default function AboutSection() {
                 viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 onClick={() => handleFacilityClick(facility)}
-                className="flex items-center text-left text-zinc-700 dark:text-zinc-300 p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:hover:bg-emerald-900/20 transition-all group border border-transparent hover:border-emerald-100 dark:hover:border-emerald-800/30 active:scale-[0.98] cursor-pointer"
+                className="flex items-center text-left text-brand-darkSoft dark:text-brand-cream p-2 rounded-xl bg-brand-primary/10 hover:bg-brand-primary/20 dark:hover:bg-brand-primarySoft/20 transition-all group border border-transparent hover:border-brand-primary/20 dark:hover:border-brand-primarySoft/30 active:scale-[0.98] cursor-pointer"
               >
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 p-2 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg group-hover:bg-emerald-100 dark:group-hover:bg-emerald-800/50 transition-colors">
+                <span className="text-brand-primary dark:text-brand-primarySoft mr-3 p-2 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-lg group-hover:bg-brand-primary/20 dark:group-hover:bg-brand-primarySoft/50 transition-colors">
                   {facility.icon}
                 </span>
-                <span className="font-medium group-hover:text-emerald-900 dark:group-hover:text-emerald-300 transition-colors">{facility.label}</span>
+                <span className="font-medium group-hover:text-brand-primary dark:group-hover:text-brand-primarySoft transition-colors">{facility.label}</span>
               </motion.button>
             ))}
           </div>
@@ -165,7 +165,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-2xl font-semibold text-emerald-800 dark:text-emerald-300 mb-4 mt-2"
+            className="text-2xl font-semibold text-brand-primary dark:text-brand-primarySoft mb-4 mt-2"
           >
             Extra Services
           </motion.h3>
@@ -177,9 +177,9 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="flex items-center text-zinc-700 dark:text-zinc-300"
+                className="flex items-center text-brand-darkSoft dark:text-brand-cream"
               >
-                <span className="text-emerald-600 dark:text-emerald-400 mr-3 p-2 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg">
+                <span className="text-brand-primary dark:text-brand-primarySoft mr-3 p-2 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-lg">
                   {service.icon}
                 </span>
                 <span className="font-medium">{service.label}</span>
@@ -192,13 +192,13 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8 flex items-center p-4 bg-zinc-50 hover:bg-zinc-100 hover:underline dark:bg-zinc-900 rounded-xl border border-zinc-100 dark:border-zinc-800 mb-8 shadow-sm cursor-pointer"
+            className="mt-8 flex items-center p-4 bg-brand-creamSoft/50 hover:bg-brand-cream/50 hover:underline dark:bg-brand-dark rounded-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 mb-8 shadow-sm cursor-pointer"
             href="#location"
           >
-            <MapPin className="text-emerald-600 dark:text-emerald-400 mr-4 w-8 h-8 shrink-0" />
+            <MapPin className="text-brand-primary dark:text-brand-primarySoft mr-4 w-8 h-8 shrink-0" />
             <div>
-              <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">Strategic Location</h4>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">Walking distance or short drive to Pantai Gunung Payung & Pantai Pandawa.</p>
+              <h4 className="font-semibold text-brand-dark dark:text-brand-creamSoft">Strategic Location</h4>
+              <p className="text-sm text-brand-darkSoft dark:text-brand-cream">Walking distance or short drive to Pantai Gunung Payung & Pantai Pandawa.</p>
             </div>
           </motion.a>
 
@@ -208,7 +208,7 @@ export default function AboutSection() {
             viewport={{ once: false }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <Link href="/about" className="inline-flex items-center justify-center bg-brand-accent hover:bg-brand-accentSoft text-white font-bold py-4 px-8 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.3)] hover:shadow-[0_0_30px_rgba(217,108,59,0.5)] transform active:scale-[0.98] transition-all tracking-wide self-start group">
+            <Link href="/about" className="inline-flex items-center justify-center bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft font-bold py-4 px-8 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.3)] hover:shadow-[0_0_30px_rgba(217,108,59,0.5)] transform active:scale-[0.98] transition-all tracking-wide self-start group">
               Discover About Us! 
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -224,4 +224,3 @@ export default function AboutSection() {
     </section>
   );
 }
-

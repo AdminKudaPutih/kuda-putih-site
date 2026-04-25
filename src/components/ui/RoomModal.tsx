@@ -48,17 +48,17 @@ function ModalContent({ room, onClose }: { room: RoomDetails; onClose: () => voi
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-brand-dark/60 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-3xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col"
+            className="relative w-full max-w-3xl bg-brand-creamSoft/90 dark:bg-brand-dark/90 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col"
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors backdrop-blur-md"
+              className="absolute top-4 right-4 z-20 p-2 bg-brand-dark/20 hover:bg-brand-dark/40 text-brand-creamSoft rounded-full transition-colors backdrop-blur-md"
             >
               <X className="w-6 h-6" />
             </button>
@@ -78,7 +78,7 @@ function ModalContent({ room, onClose }: { room: RoomDetails; onClose: () => voi
                 />
                 <motion.div 
                   style={{ opacity: overlayOpacity }}
-                  className="absolute inset-0 bg-black" 
+                  className="absolute inset-0 bg-brand-dark" 
                 />
               </motion.div>
             </div>
@@ -89,28 +89,28 @@ function ModalContent({ room, onClose }: { room: RoomDetails; onClose: () => voi
               className="relative z-10 overflow-y-auto h-full pt-48 sm:pt-64"
             >
               {/* Content Card with Title & Rating */}
-              <div className="bg-brand-creamSoft/60 dark:bg-zinc-900/80 backdrop-blur-md rounded-t-[2.5rem] shadow-[0_-8px_30px_rgb(0,0,0,0.12)] min-h-full">
+              <div className="bg-brand-creamSoft/60 dark:bg-brand-dark/80 backdrop-blur-md rounded-t-[2.5rem] shadow-[0_-8px_30px_rgb(0,0,0,0.12)] min-h-full">
                 <div className="p-6 sm:p-8">
                   {/* Title & Rating Header - Now part of the scrollable content */}
                   <div className="mb-8">
-                    <h3 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mb-3">
+                    <h3 className="text-3xl sm:text-4xl font-bold text-brand-dark dark:text-brand-creamSoft mb-3">
                       {room.modalTitle || room.title}
                     </h3>
                     {room.rating && (
                       <div className="flex items-center gap-1.5 text-brand-accentSoft">
                         <Star className="w-5 h-5 fill-current" />
-                        <span className="font-bold text-zinc-900 dark:text-white">{room.rating}</span>
-                        <span className="text-zinc-500 dark:text-zinc-400 text-sm">/ 5 Rating</span>
+                        <span className="font-bold text-brand-dark dark:text-brand-creamSoft">{room.rating}</span>
+                        <span className="text-brand-darkSoft dark:text-brand-cream text-sm">/ 5 Rating</span>
                       </div>
                     )}
                   </div>
 
                   {/* Top info bar (Price & Availability) */}
                   {!room.isEnvironment && (room.price || room.availability) && (
-                    <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-8 border-b border-zinc-200/50 dark:border-zinc-800/50">
+                    <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-8 border-b border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
                       {room.price && (
                         <div>
-                          <p className="text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold mb-1.5">Starting from</p>
+                          <p className="text-xs uppercase tracking-wider text-brand-darkSoft dark:text-brand-cream font-semibold mb-1.5">Starting from</p>
                           <p className="text-3xl font-bold text-brand-primary dark:text-brand-primarySoft">
                             {room.price}
                           </p>
@@ -128,27 +128,27 @@ function ModalContent({ room, onClose }: { room: RoomDetails; onClose: () => voi
 
                   <div className="space-y-10">
                     <div>
-                      <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 flex items-center gap-2">
+                      <h4 className="text-xl font-bold text-brand-dark dark:text-brand-creamSoft mb-4 flex items-center gap-2">
                         <div className="w-1 h-6 bg-brand-primary rounded-full" />
                         Description
                       </h4>
-                      <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+                      <p className="text-brand-darkSoft dark:text-brand-cream leading-relaxed text-lg">
                         {room.description}
                       </p>
                     </div>
 
                     <div>
-                      <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-5 flex items-center gap-2">
+                      <h4 className="text-xl font-bold text-brand-dark dark:text-brand-creamSoft mb-5 flex items-center gap-2">
                         <div className="w-1 h-6 bg-brand-primary rounded-full" />
                         {room.isEnvironment ? "Property Facilities" : "Room Facilities"}
                       </h4>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                         {room.facilities.map((facility, idx) => (
-                          <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-zinc-50/50 dark:bg-zinc-800/30 border border-zinc-100/50 dark:border-zinc-800/50 hover:border-brand-primary/30 transition-colors group">
+                          <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 hover:border-brand-primary/30 transition-colors group">
                             <span className="text-brand-primary dark:text-brand-primarySoft group-hover:scale-110 transition-transform">
                               {facility.icon}
                             </span>
-                            <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                            <span className="text-sm font-semibold text-brand-darkSoft dark:text-brand-cream">
                               {facility.label}
                             </span>
                           </div>
@@ -182,4 +182,3 @@ export default function RoomModal({ room, isOpen, onClose }: RoomModalProps) {
     </AnimatePresence>
   );
 }
-

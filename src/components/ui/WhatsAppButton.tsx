@@ -10,7 +10,7 @@ export default function WhatsAppButton() {
         href="https://wa.me/6285333547048" // Replace with real WhatsApp number
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#1EBE5D] transition-colors duration-300"
+        className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-brand-primary text-brand-creamSoft rounded-full shadow-lg hover:bg-brand-primarySoft transition-colors duration-300 shadow-brand-primary/30"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}

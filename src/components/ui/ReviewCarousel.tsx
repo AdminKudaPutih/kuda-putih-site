@@ -49,12 +49,12 @@ export default function ReviewCarousel() {
         {duplicatedReviews.map((review, index) => (
           <div
             key={index}
-            className="w-80 md:w-[400px] p-8 bg-white dark:bg-zinc-800 rounded-3xl shadow-md border border-emerald-50 dark:border-zinc-700 shrink-0 flex flex-col justify-between"
+            className="w-80 md:w-[400px] p-8 bg-brand-creamSoft dark:bg-brand-darkSoft/20 rounded-3xl shadow-md border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 shrink-0 flex flex-col justify-between"
           >
-            <p className="text-zinc-700 dark:text-zinc-300 italic text-lg leading-relaxed mb-6">
+            <p className="text-brand-darkSoft dark:text-brand-cream italic text-lg leading-relaxed mb-6">
               &quot;{review.text}&quot;
             </p>
-            <div className="font-serif font-bold text-emerald-800 dark:text-emerald-400">
+            <div className="font-serif font-bold text-brand-primary dark:text-brand-primarySoft">
               — {review.author}
             </div>
           </div>

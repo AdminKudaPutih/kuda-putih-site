@@ -54,15 +54,15 @@ export default function BookSection() {
   };
 
   return (
-    <section id="book" className="flex flex-col min-h-screen bg-brand-accentSoft/10 dark:bg-zinc-900 px-6 py-24 items-center justify-center text-center relative">
+    <section id="book" className="flex flex-col min-h-screen bg-brand-accentSoft/10 dark:bg-brand-dark px-6 py-24 items-center justify-center text-center relative">
       <div className="max-w-4xl w-full">
         
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-emerald-900 dark:text-emerald-400 mb-4">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-brand-primary dark:text-brand-primarySoft mb-4">
             Book Your Stay
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl mx-auto">
+          <p className="text-brand-darkSoft dark:text-brand-cream text-lg max-w-2xl mx-auto">
             Tell us when you plan to arrive and we&apos;ll check availability for you.
           </p>
         </div>
@@ -74,37 +74,37 @@ export default function BookSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-white dark:bg-zinc-950 rounded-3xl shadow-xl p-8 md:p-10 border border-emerald-50 dark:border-zinc-800 mx-auto max-w-2xl relative z-10 transition-all duration-500"
+              className="bg-brand-creamSoft dark:bg-brand-dark rounded-3xl shadow-xl p-8 md:p-10 border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 mx-auto max-w-2xl relative z-10 transition-all duration-500"
             >
               <form onSubmit={handleCheckAvailability} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
               <div>
-                <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-2">Check-in</label>
+                <label className="block text-xs font-bold text-brand-darkSoft dark:text-brand-cream uppercase tracking-widest mb-2">Check-in</label>
                 <input 
                   type="date" 
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 text-brand-dark dark:text-brand-creamSoft focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-2">Check-out</label>
+                <label className="block text-xs font-bold text-brand-darkSoft dark:text-brand-cream uppercase tracking-widest mb-2">Check-out</label>
                 <input 
                   type="date" 
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 text-brand-dark dark:text-brand-creamSoft focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all"
                 />
               </div>
             </div>
             
             <div className="text-left">
-              <label className="block text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-2">Guests</label>
+              <label className="block text-xs font-bold text-brand-darkSoft dark:text-brand-cream uppercase tracking-widest mb-2">Guests</label>
               <div className="relative">
-                <select className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all appearance-none cursor-pointer">
-                  <option>1 Person</option>
-                  <option>2 People</option>
-                  <option>3 People +</option>
+                <select className="w-full px-4 py-3 rounded-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 text-brand-dark dark:text-brand-creamSoft focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all appearance-none cursor-pointer">
+                  <option className="text-brand-dark">1 Person</option>
+                  <option className="text-brand-dark">2 People</option>
+                  <option className="text-brand-dark">3 People +</option>
                 </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-zinc-500">
+                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-brand-darkSoft">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -115,11 +115,11 @@ export default function BookSection() {
             <button 
               type="submit" 
               disabled={isChecking}
-              className="w-full bg-brand-accent hover:bg-brand-accentSoft text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.2)] hover:shadow-[0_0_30px_rgba(217,108,59,0.4)] disabled:opacity-70 disabled:cursor-not-allowed transform active:scale-[0.98] transition-all tracking-wide flex justify-center items-center gap-2"
+              className="w-full bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(217,108,59,0.2)] hover:shadow-[0_0_30px_rgba(217,108,59,0.4)] disabled:opacity-70 disabled:cursor-not-allowed transform active:scale-[0.98] transition-all tracking-wide flex justify-center items-center gap-2"
             >
               {isChecking ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-brand-creamSoft" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                   Checking...
                 </>
               ) : "Check Availability"}
@@ -139,10 +139,10 @@ export default function BookSection() {
               className="mt-8 text-left w-full max-w-3xl mx-auto"
             >
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-2xl font-bold text-zinc-800 dark:text-zinc-200 pl-3 border-l-4 border-brand-accent">Available Rooms</h3>
+                <h3 className="text-2xl font-bold text-brand-dark dark:text-brand-creamSoft pl-3 border-l-4 border-brand-accent">Available Rooms</h3>
                 <button 
                   onClick={() => setHasChecked(false)}
-                  className="text-sm font-medium text-zinc-500 hover:text-brand-accent transition-colors underline underline-offset-4"
+                  className="text-sm font-medium text-brand-darkSoft hover:text-brand-accent transition-colors underline underline-offset-4"
                 >
                   Change Dates
                 </button>
@@ -160,49 +160,49 @@ export default function BookSection() {
                       ease: "easeOut"
                     }}
                     onClick={() => setSelectedRoom(room)}
-                    className="bg-white dark:bg-zinc-950 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 overflow-hidden cursor-pointer group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col"
+                    className="bg-brand-creamSoft dark:bg-brand-dark rounded-2xl shadow-lg border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 overflow-hidden cursor-pointer group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col"
                   >
                     <div className="relative h-48 w-full">
                       {room.image ? (
                         <Image src={room.image} alt={room.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       ) : (
-                        <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-400">No Image</div>
+                        <div className="w-full h-full bg-brand-cream/50 dark:bg-brand-darkSoft/30 flex items-center justify-center text-brand-darkSoft">No Image</div>
                       )}
-                      <div className="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur text-brand-accent px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">
+                      <div className="absolute top-3 left-3 bg-brand-creamSoft/90 dark:bg-brand-dark/80 backdrop-blur text-brand-accent px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">
                         {room.availability} Available
                       </div>
-                      <div className="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur flex items-center gap-1 text-emerald-700 dark:text-emerald-400 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">
+                      <div className="absolute top-3 right-3 bg-brand-creamSoft/90 dark:bg-brand-dark/80 backdrop-blur flex items-center gap-1 text-brand-primary dark:text-brand-primarySoft px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">
                         <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                         <span>{room.rating}</span>
                       </div>
                     </div>
                     
                     <div className="p-6 flex-1 flex flex-col">
-                      <h4 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-brand-accent transition-colors mb-2">{room.name}</h4>
-                      <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-4 line-clamp-2">
+                      <h4 className="text-2xl font-bold text-brand-dark dark:text-brand-creamSoft group-hover:text-brand-accent transition-colors mb-2">{room.name}</h4>
+                      <p className="text-brand-darkSoft dark:text-brand-cream text-sm mb-4 line-clamp-2">
                         {room.description}
                       </p>
                       
                       <div className="flex flex-wrap gap-2 mb-6">
                         {room.features.map((feature, i) => (
-                          <div key={i} className="flex items-center gap-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded-md">
+                          <div key={i} className="flex items-center gap-1.5 text-xs font-medium text-brand-darkSoft dark:text-brand-cream bg-brand-primary/10 dark:bg-brand-primarySoft/20 px-2 py-1 rounded-md">
                             {feature.icon}
                             {feature.name}
                           </div>
                         ))}
                       </div>
 
-                      <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                      <div className="mt-auto flex items-center justify-between pt-4 border-t border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
                         <div>
-                          <span className="block text-xs text-zinc-500 font-medium">Price</span>
-                          <span className="font-bold text-lg text-emerald-900 dark:text-emerald-400">{room.price.split(' /')[0]}</span>
+                          <span className="block text-xs text-brand-darkSoft font-medium">Price</span>
+                          <span className="font-bold text-lg text-brand-primary dark:text-brand-primarySoft">{room.price.split(' /')[0]}</span>
                         </div>
                         <button 
                           onClick={(e) => {
                             e.stopPropagation();
                             alert(`Added ${room.name} to Cart`);
                           }}
-                          className="bg-brand-accent hover:bg-brand-accentSoft text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-md active:scale-95 flex items-center gap-2"
+                          className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-4 py-2.5 rounded-xl font-bold transition-all shadow-md active:scale-95 flex items-center gap-2"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -230,7 +230,7 @@ export default function BookSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedRoom(null)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-60"
+              className="fixed inset-0 bg-brand-dark/60 backdrop-blur-sm z-60"
             />
             
             {/* Modal Content */}
@@ -239,59 +239,59 @@ export default function BookSection() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed bottom-0 left-0 right-0 z-70 bg-white dark:bg-zinc-950 rounded-t-3xl md:top-1/2 md:-translate-y-1/2 md:max-h-[80vh] md:max-w-xl md:mx-auto md:rounded-3xl shadow-2xl flex flex-col md:bottom-auto md:left-auto md:right-auto md:w-full overflow-hidden"
+              className="fixed bottom-0 left-0 right-0 z-70 bg-brand-creamSoft dark:bg-brand-dark rounded-t-3xl md:top-1/2 md:-translate-y-1/2 md:max-h-[80vh] md:max-w-xl md:mx-auto md:rounded-3xl shadow-2xl flex flex-col md:bottom-auto md:left-auto md:right-auto md:w-full overflow-hidden"
               style={ { maxHeight: '90vh' } }
             >
               {/* Drag Indicator (Mobile) */}
               <div className="w-full flex justify-center py-3 md:hidden">
-                <div className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full"></div>
+                <div className="w-12 h-1.5 bg-brand-darkSoft/40 dark:bg-brand-cream/20 rounded-full"></div>
               </div>
               
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedRoom(null)}
-                className="absolute top-4 right-4 p-2 bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                className="absolute top-4 right-4 p-2 bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 rounded-full text-brand-darkSoft hover:text-brand-dark dark:hover:text-brand-creamSoft transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
               </button>
 
               <div className="p-6 md:p-8 overflow-y-auto flex-1 text-left">
                 <p className="text-sm font-bold text-brand-accent mb-2">{selectedRoom.availability} Available</p>
-                <h2 className="text-3xl font-heading font-bold text-zinc-900 dark:text-white mb-2">{selectedRoom.name}</h2>
-                <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold mb-6">
+                <h2 className="text-3xl font-heading font-bold text-brand-dark dark:text-brand-creamSoft mb-2">{selectedRoom.name}</h2>
+                <div className="flex items-center gap-1 text-brand-primary dark:text-brand-primarySoft font-bold mb-6">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                   <span>{selectedRoom.rating} (120+ reviews)</span>
                 </div>
                 
                 {/* Image Placeholder */}
-                <div className="w-full h-48 md:h-64 bg-zinc-200 dark:bg-zinc-800 rounded-2xl mb-6 flex items-center justify-center text-zinc-400 border border-dashed border-zinc-300 dark:border-zinc-700">
+                <div className="w-full h-48 md:h-64 bg-brand-cream/50 dark:bg-brand-darkSoft/30 rounded-2xl mb-6 flex items-center justify-center text-brand-darkSoft border border-dashed border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
                   <span className="font-medium text-lg">Room Image Gallery</span>
                 </div>
 
-                <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-3">About this room</h3>
-                <p className="text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
+                <h3 className="text-lg font-bold text-brand-dark dark:text-brand-creamSoft mb-3">About this room</h3>
+                <p className="text-brand-darkSoft dark:text-brand-cream mb-8 leading-relaxed">
                   {selectedRoom.description} Experience the optimal balance of privacy and community living. 
                   Our facilities are maintained daily to ensure maximum comfort and hygiene for all our guests.
                 </p>
 
-                <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-4">What this place offers</h3>
+                <h3 className="text-lg font-bold text-brand-dark dark:text-brand-creamSoft mb-4">What this place offers</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   {selectedRoom.features.map((feature, i) => (
-                     <div key={i} className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
-                        <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-emerald-600 dark:text-emerald-400">
+                     <div key={i} className="flex items-center gap-3 text-brand-darkSoft dark:text-brand-cream">
+                        <div className="p-2 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-lg text-brand-primary dark:text-brand-primarySoft">
                           {feature.icon}
                         </div>
                         <span className="font-medium">{feature.name}</span>
                      </div>
                   ))}
-                  <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
-                    <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-emerald-600 dark:text-emerald-400">
+                  <div className="flex items-center gap-3 text-brand-darkSoft dark:text-brand-cream">
+                    <div className="p-2 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-lg text-brand-primary dark:text-brand-primarySoft">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     </div>
                     <span className="font-medium">24/7 Security</span>
                   </div>
-                  <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
-                    <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-emerald-600 dark:text-emerald-400">
+                  <div className="flex items-center gap-3 text-brand-darkSoft dark:text-brand-cream">
+                    <div className="p-2 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-lg text-brand-primary dark:text-brand-primarySoft">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                     </div>
                     <span className="font-medium">Daily Cleaning</span>
@@ -301,14 +301,14 @@ export default function BookSection() {
               </div>
               
               {/* Sticky Footer */}
-              <div className="p-5 border-t border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 flex items-center justify-between shadow-[0_-10px_30px_rgba(0,0,0,0.05)] z-10 transition-colors">
+              <div className="p-5 border-t border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft dark:bg-brand-dark shadow-[0_-10px_30px_rgba(0,0,0,0.05)] z-10 transition-colors">
                  <div>
-                    <p className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Price</p>
-                    <p className="text-2xl font-bold text-emerald-900 dark:text-emerald-400">{selectedRoom.price}</p>
+                    <p className="text-brand-darkSoft dark:text-brand-cream text-sm font-medium">Price</p>
+                    <p className="text-2xl font-bold text-brand-primary dark:text-brand-primarySoft">{selectedRoom.price}</p>
                  </div>
                  <button 
                   onClick={() => alert(`Redirecting to final booking for ${selectedRoom.name}...`)}
-                  className="bg-brand-accent hover:bg-brand-accentSoft text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-95"
+                  className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-8 py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-95"
                  >
                    Confirm Booking
                  </button>

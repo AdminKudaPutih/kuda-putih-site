@@ -49,7 +49,7 @@ export default function RoomsPage() {
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
-    <div className="min-h-screen bg-brand-creamSoft dark:bg-zinc-950">
+    <div className="min-h-screen bg-brand-creamSoft dark:bg-brand-dark">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[500px] flex flex-col justify-center items-center px-6 overflow-hidden">
         <motion.div 
@@ -63,7 +63,7 @@ export default function RoomsPage() {
             className="object-cover scale-110"
             priority
           />
-          <div className="absolute inset-0 bg-black/60 z-0" />
+          <div className="absolute inset-0 bg-brand-dark/60 z-0" />
         </motion.div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 pt-16">
@@ -71,7 +71,7 @@ export default function RoomsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-7xl font-heading font-bold text-white mb-6"
+            className="text-5xl md:text-7xl font-heading font-bold text-brand-creamSoft mb-6"
           >
             Refined <br className="md:hidden" /> <span className="text-brand-accentSoft">Accommodations</span>
           </motion.h1>
@@ -79,14 +79,14 @@ export default function RoomsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-zinc-200 max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+            className="text-xl text-brand-cream max-w-2xl mx-auto leading-relaxed drop-shadow-md"
           >
             Find your perfect sanctuary. Choose from our carefully curated rooms designed for ultimate comfort and tranquility.
           </motion.p>
         </div>
 
         {/* Cloud Transition Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-zinc-950 via-brand-creamSoft/60 dark:via-zinc-950/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-brand-dark via-brand-creamSoft/60 dark:via-brand-dark/60 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Rooms Listing Section */}
@@ -103,18 +103,18 @@ export default function RoomsPage() {
             >
               {/* Image Side */}
               <div className="w-full lg:w-1/2">
-                <div className="relative aspect-square lg:aspect-[4/5] xl:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl group border border-zinc-200 dark:border-zinc-800">
+                <div className="relative aspect-square lg:aspect-[4/5] xl:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl group border border-brand-darkSoft/20 dark:border-brand-creamSoft/10">
                   <Image
                     src={room.image}
                     alt={room.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-t from-brand-dark/60 via-transparent to-transparent opacity-100 transition-opacity duration-500" />
                   
                   {/* Floating Tags on Image */}
                   <div className="absolute top-6 left-6 flex gap-3">
-                    <div className="bg-brand-primarySoft/90 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg border border-brand-primary/50">
+                    <div className="bg-brand-primarySoft/90 backdrop-blur-md text-brand-creamSoft px-4 py-1.5 rounded-full text-sm font-bold shadow-lg border border-brand-primary/50">
                       {room.availability}
                     </div>
                   </div>
@@ -127,26 +127,26 @@ export default function RoomsPage() {
                   <div className="flex items-center gap-2 text-brand-accent mb-3">
                     <Star className="w-5 h-5 fill-current" />
                     <span className="font-bold text-lg">{room.rating}</span>
-                    <span className="text-zinc-500 dark:text-zinc-400 text-sm">/ 5</span>
+                    <span className="text-brand-darkSoft dark:text-brand-cream text-sm">/ 5</span>
                   </div>
                   <h2 className="text-4xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft mb-4">
                     {room.title}
                   </h2>
-                  <p className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
+                  <p className="text-brand-darkSoft dark:text-brand-cream text-lg leading-relaxed">
                     {room.description}
                   </p>
                 </div>
 
                 {/* Facilities */}
                 <div>
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Room Facilities</h3>
+                  <h3 className="text-xl font-semibold text-brand-dark dark:text-brand-creamSoft mb-4">Room Facilities</h3>
                   <div className="grid grid-cols-2 gap-4">
                     {room.facilities.map((fac, idx) => (
                       <div key={idx} className="flex items-center gap-3">
                         <span className="p-2 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-lg text-brand-primary dark:text-brand-primarySoft">
                           {fac.icon}
                         </span>
-                        <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                        <span className="font-medium text-brand-darkSoft dark:text-brand-cream">
                           {fac.label}
                         </span>
                       </div>
@@ -155,14 +155,14 @@ export default function RoomsPage() {
                 </div>
 
                 {/* Price & Action */}
-                <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="pt-6 border-t border-brand-darkSoft/20 dark:border-brand-creamSoft/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                   <div>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-1">Starting from</p>
+                    <p className="text-sm text-brand-darkSoft dark:text-brand-cream mb-1">Starting from</p>
                     <div className="flex items-baseline gap-2">
                       <span className="text-3xl font-bold text-brand-primary dark:text-brand-primarySoft">
                         {room.price}
                       </span>
-                      <span className="text-zinc-500 dark:text-zinc-400 font-medium">
+                      <span className="text-brand-darkSoft dark:text-brand-cream font-medium">
                         {room.period}
                       </span>
                     </div>
@@ -170,7 +170,7 @@ export default function RoomsPage() {
 
                   <Link 
                     href="#book"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-accent hover:bg-brand-accentSoft text-white rounded-full font-bold shadow-lg shadow-brand-accent/30 transition-all hover:scale-105 group"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft rounded-full font-bold shadow-lg shadow-brand-accent/30 transition-all hover:scale-105 group"
                   >
                     <ShoppingCart className="w-5 h-5 group-hover:-rotate-12 transition-transform" />
                     <span>Add to Chart</span>

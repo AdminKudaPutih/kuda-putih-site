@@ -40,17 +40,17 @@ export default function FacilityModal({ facility, isOpen, onClose }: FacilityMod
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-brand-dark/60 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-2xl bg-brand-creamSoft dark:bg-brand-dark rounded-3xl overflow-hidden shadow-2xl"
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors backdrop-blur-md"
+              className="absolute top-4 right-4 z-10 p-2 bg-brand-dark/20 hover:bg-brand-dark/40 text-brand-creamSoft rounded-full transition-colors backdrop-blur-md"
             >
               <X className="w-6 h-6" />
             </button>
@@ -66,14 +66,14 @@ export default function FacilityModal({ facility, isOpen, onClose }: FacilityMod
 
             <div className="p-8">
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-emerald-600 dark:text-emerald-400 p-3 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
+                <span className="text-brand-primary dark:text-brand-primarySoft p-3 bg-brand-primary/10 dark:bg-brand-primarySoft/20 rounded-xl">
                   {facility.icon}
                 </span>
-                <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                <h3 className="text-2xl font-bold text-brand-dark dark:text-brand-creamSoft">
                   {facility.label}
                 </h3>
               </div>
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+              <p className="text-brand-darkSoft dark:text-brand-cream leading-relaxed text-lg">
                 {facility.description}
               </p>
             </div>

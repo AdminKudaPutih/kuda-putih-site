@@ -39,7 +39,7 @@ const FacebookIcon = ({ size = 20 }: { size?: number }) => (
 
 export default function Footer() {
   return (
-    <footer className="bg-emerald-950 text-emerald-50/80 pt-20 pb-10 px-6 overflow-hidden relative">
+    <footer className="bg-brand-primary text-brand-creamSoft pt-20 pb-10 px-6 overflow-hidden relative">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 -mt-24 -mr-24 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl"></div>
 
@@ -49,21 +49,21 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link href="#home" className="inline-block">
-              <span className="font-heading text-3xl font-bold text-white tracking-tight">
+              <span className="font-heading text-3xl font-bold text-brand-creamSoft tracking-tight">
                 Kuda Putih<span className="text-brand-accent">.</span>
               </span>
             </Link>
-            <p className="text-emerald-100/60 leading-relaxed max-w-xs">
+            <p className="text-brand-cream leading-relaxed max-w-xs">
               Experience the authentic Bali spirit in our premium boarding house. A peaceful sanctuary designed for comfort, community, and tropical living.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="p-2.5 bg-emerald-900/50 rounded-full hover:bg-brand-accent hover:text-white transition-all duration-300" aria-label="Instagram">
+              <a href="#" className="p-2.5 bg-brand-darkSoft/50 rounded-full hover:bg-brand-accent hover:text-brand-creamSoft transition-all duration-300" aria-label="Instagram">
                 <InstagramIcon size={20} />
               </a>
-              <a href="#" className="p-2.5 bg-emerald-900/50 rounded-full hover:bg-brand-accent hover:text-white transition-all duration-300" aria-label="Facebook">
+              <a href="#" className="p-2.5 bg-brand-darkSoft/50 rounded-full hover:bg-brand-accent hover:text-brand-creamSoft transition-all duration-300" aria-label="Facebook">
                 <FacebookIcon size={20} />
               </a>
-              <a href="#" className="p-2.5 bg-emerald-900/50 rounded-full hover:bg-brand-accent hover:text-white transition-all duration-300" aria-label="WhatsApp">
+              <a href="#" className="p-2.5 bg-brand-darkSoft/50 rounded-full hover:bg-brand-accent hover:text-brand-creamSoft transition-all duration-300" aria-label="WhatsApp">
                 <MessageCircle size={20} />
               </a>
             </div>
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Quick Links Column */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8 border-l-2 border-brand-accent pl-3">
+            <h4 className="text-brand-creamSoft font-bold uppercase tracking-widest text-sm mb-8 border-l-2 border-brand-accent pl-3">
               Quick Navigation
             </h4>
             <ul className="space-y-4">
@@ -79,7 +79,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    className="flex items-center group text-emerald-100/60 hover:text-brand-accent transition-colors"
+                    className="flex items-center group text-brand-cream hover:text-brand-accent transition-colors"
                   >
                     <ArrowRight size={14} className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                     {link.name}
@@ -91,7 +91,7 @@ export default function Footer() {
 
           {/* Contact Column */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8 border-l-2 border-brand-accent pl-3">
+            <h4 className="text-brand-creamSoft font-bold uppercase tracking-widest text-sm mb-8 border-l-2 border-brand-accent pl-3">
               Get In Touch
             </h4>
             <ul className="space-y-6">
@@ -99,18 +99,18 @@ export default function Footer() {
                 <div className="mt-1 text-brand-accent">
                   <MapPin size={20} />
                 </div>
-                <p className="text-emerald-100/60 leading-relaxed">
+                <p className="text-brand-cream leading-relaxed">
                   Jl. Kuda Putih No. 88, Canggu, <br />
                   Kuta Utara, Badung, Bali 80361
                 </p>
               </li>
-              <li className="flex items-center gap-4 text-emerald-100/60 hover:text-brand-accent transition-colors">
+              <li className="flex items-center gap-4 text-brand-cream hover:text-brand-accent transition-colors">
                 <div className="text-brand-accent">
                   <Phone size={20} />
                 </div>
                 <a href="tel:+628123456789">+62 812-3456-789</a>
               </li>
-              <li className="flex items-center gap-4 text-emerald-100/60 hover:text-brand-accent transition-colors">
+              <li className="flex items-center gap-4 text-brand-cream hover:text-brand-accent transition-colors">
                 <div className="text-brand-accent">
                   <Mail size={20} />
                 </div>
@@ -121,7 +121,7 @@ export default function Footer() {
 
           {/* Policies Column */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8 border-l-2 border-brand-accent pl-3">
+            <h4 className="text-brand-creamSoft font-bold uppercase tracking-widest text-sm mb-8 border-l-2 border-brand-accent pl-3">
               Information
             </h4>
             <ul className="space-y-4">
@@ -129,35 +129,35 @@ export default function Footer() {
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    className="text-emerald-100/60 hover:text-brand-accent transition-colors"
+                    className="text-brand-cream hover:text-brand-accent transition-colors"
                   >
                     {link.name}
                   </a>
                 </li>
               ))}
             </ul>
-            <div className="mt-10 p-6 bg-emerald-900/30 rounded-2xl border border-emerald-800/50">
-               <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2">Office Hours</p>
-               <p className="text-sm text-emerald-100/60">Mon - Sat: 08:00 - 20:00</p>
-               <p className="text-sm text-emerald-100/60">Sun: 09:00 - 17:00</p>
+            <div className="mt-10 p-6 bg-brand-darkSoft/30 rounded-2xl border border-brand-darkSoft/20">
+               <p className="text-xs font-bold text-brand-primarySoft uppercase tracking-widest mb-2">Office Hours</p>
+               <p className="text-sm text-brand-cream">Mon - Sat: 08:00 - 20:00</p>
+               <p className="text-sm text-brand-cream">Sun: 09:00 - 17:00</p>
             </div>
           </div>
 
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-emerald-900 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-sm text-emerald-100/40 text-center md:text-left">
+        <div className="pt-10 border-t border-brand-darkSoft/20 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-sm text-brand-cream/40 text-center md:text-left">
             &copy; {new Date().getFullYear()} Kuda Putih House, Bali. All Rights Reserved.
           </p>
           <div className="flex items-center gap-8">
-             <span className="text-[10px] uppercase tracking-[0.2em] text-emerald-100/20 font-bold">
+             <span className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/20 font-bold">
                Designed in Bali
              </span>
              <div className="flex gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-800"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-darkSoft"></div>
                 <div className="w-1.5 h-1.5 rounded-full bg-brand-accent"></div>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-800"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-darkSoft"></div>
              </div>
           </div>
         </div>

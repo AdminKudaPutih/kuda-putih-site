@@ -133,8 +133,8 @@ export default function NavBar() {
                   href="/#book"
                   className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${
                     activeSection === "book" 
-                      ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-white" 
-                      : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-emerald-600/50 dark:border-emerald-600 text-brand-accent hover:text-white hover:bg-brand-accent hover:border-brand-accent"
+                      ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-brand-creamSoft" 
+                      : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-brand-primarySoft/50 dark:border-brand-primarySoft text-brand-accent hover:text-brand-creamSoft hover:bg-brand-accent hover:border-brand-accent"
                   }`}
                 >
                   Book Now

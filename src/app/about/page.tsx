@@ -79,7 +79,7 @@ export default function AboutPage() {
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-zinc-950">
+    <main className="min-h-screen bg-brand-creamSoft dark:bg-brand-dark">
 
 
       {/* Hero Header Section */}
@@ -97,7 +97,7 @@ export default function AboutPage() {
             priority
           />
           {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-black/60 z-0" />
+          <div className="absolute inset-0 bg-brand-dark/60 z-0" />
         </motion.div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 pt-16">
@@ -105,7 +105,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-7xl/20 font-heading font-bold text-white mb-6"
+            className="text-5xl md:text-7xl/20 font-heading font-bold text-brand-creamSoft mb-6"
           >
             About <br /> <span className="text-brand-accentSoft">Kuda Putih House</span>
           </motion.h1>
@@ -113,14 +113,14 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-zinc-200 max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+            className="text-xl text-brand-cream max-w-2xl mx-auto leading-relaxed drop-shadow-md"
           >
             A sanctuary of comfort, community, and tranquility nestled in the heart of South Kuta, Bali.
           </motion.p>
         </div>
 
         {/* Cloud Transition Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-white dark:from-zinc-950 via-white/60 dark:via-zinc-950/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-brand-dark via-brand-creamSoft/60 dark:via-brand-dark/60 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Detailed Description & Image Gallery */}
@@ -135,10 +135,10 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="text-left space-y-6"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-zinc-900 dark:text-zinc-100">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark dark:text-brand-creamSoft">
               More Than Just A Place To Stay
             </h2>
-            <div className="space-y-4 text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
+            <div className="space-y-4 text-brand-darkSoft dark:text-brand-cream leading-relaxed text-lg">
               <p>
                 Kuda Putih House was established with a singular vision: to provide an exceptional living experience that bridges the gap between premium hotel comfort and the warmth of a residential home.
               </p>
@@ -189,13 +189,13 @@ export default function AboutPage() {
       </section>
 
       {/* Interactive Features Grid */}
-      <section className="py-24 px-6 bg-zinc-50 dark:bg-zinc-900/30">
+      <section className="py-24 px-6 bg-brand-cream dark:bg-brand-darkSoft/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft mb-6">
               Our Premium Facilities
             </h2>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-xl text-brand-darkSoft dark:text-brand-cream max-w-2xl mx-auto">
               Everything you need for a comfortable, productive, and relaxing lifestyle is right here.
             </p>
           </div>
@@ -222,13 +222,13 @@ export default function AboutPage() {
       </section>
 
       {/* Extra Services Section */}
-      <section className="py-24 px-6 bg-white dark:bg-zinc-950">
+      <section className="py-24 px-6 bg-brand-creamSoft dark:bg-brand-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft mb-6">
               Extra Services
             </h2>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-xl text-brand-darkSoft dark:text-brand-cream max-w-2xl mx-auto">
               Make your stay even more seamless with our additional tailored services.
             </p>
           </div>
@@ -255,26 +255,26 @@ export default function AboutPage() {
       </section>
 
       {/* Strategic Location Section */}
-      <section className="py-10 px-6 bg-zinc-50 dark:bg-zinc-900/30">
+      <section className="py-10 px-6 bg-brand-cream dark:bg-brand-darkSoft/10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ duration: 0.6 }}
-            className="bg-white dark:bg-zinc-900 rounded-3xl p-8 md:p-12 shadow-xl border border-zinc-100 dark:border-zinc-800"
+            className="bg-brand-creamSoft dark:bg-brand-darkSoft/20 rounded-3xl p-8 md:p-12 shadow-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10"
           >
-            <Link href="/#location" className="inline-flex items-center justify-center p-4 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-900/30 rounded-full mb-6 cursor-pointer ">
-              <MapPin className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
+            <Link href="/#location" className="inline-flex items-center justify-center p-4 bg-brand-primary/10 hover:bg-brand-primary/20 dark:bg-brand-primarySoft/20 rounded-full mb-6 cursor-pointer ">
+              <MapPin className="w-10 h-10 text-brand-primary dark:text-brand-primarySoft" />
             </Link>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-primary dark:text-brand-primarySoft mb-6">
               Strategic Location
             </h2>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+            <p className="text-lg text-brand-darkSoft dark:text-brand-cream leading-relaxed mb-6">
               Nestled perfectly in South Kuta, Kuda Putih House offers an unbeatable balance of peaceful seclusion and incredible accessibility.
               We are within walking distance or a very short drive to the mesmerizing white sands of <strong>Pantai Gunung Payung</strong> and the famous <strong>Pantai Pandawa</strong>.
             </p>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <p className="text-lg text-brand-darkSoft dark:text-brand-cream leading-relaxed">
               Experience the best of Bali&apos;s southern peninsula, with easy access to top-tier cafes, cultural landmarks, and surfing spots, all while having a quiet sanctuary to return to at the end of the day.
             </p>
           </motion.div>

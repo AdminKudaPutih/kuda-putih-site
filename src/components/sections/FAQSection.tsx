@@ -24,9 +24,9 @@ const faqData = [
 
 export default function FAQSection() {
   return (
-    <section className="bg-brand-cream/30 dark:bg-zinc-900/50 py-24 px-6 relative overflow-hidden">
+    <section className="bg-brand-cream/30 dark:bg-brand-darkSoft/10 py-24 px-6 relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -37,10 +37,10 @@ export default function FAQSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-emerald-900 dark:text-emerald-400 mb-6">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-brand-primary dark:text-brand-primarySoft mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl mx-auto">
+          <p className="text-brand-darkSoft dark:text-brand-cream text-lg max-w-2xl mx-auto">
             Everything you need to know about your stay at Kuda Putih House.
           </p>
         </motion.div>
