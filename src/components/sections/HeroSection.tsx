@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 const mockRooms = [
   {
@@ -33,6 +33,10 @@ export default function HeroSection() {
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
 
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 1000], ["0%", "40%"]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+
   const handleCheckAvailability = (e: React.FormEvent) => {
     e.preventDefault();
     setIsChecking(true);
@@ -48,10 +52,13 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Full Background Image */}
-        <div className="absolute inset-0 z-0 bg-zinc-900">
-          <Image width={1920} height={1080} src="/hero_bg.png" alt="Kuda Putih House Bali" className="w-full h-full object-cover opacity-90" />
-          <div className="absolute inset-0 bg-brand-dark/50 bg-linear-t/o-t from-brand-dark/80 via-transparent to-brand-dark/20 mix-blend-multiply"></div>
-        </div>
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="absolute inset-0 z-0 bg-zinc-900 origin-top"
+        >
+          <Image width={1920} height={1080} src="/hero_bg.png" alt="Kuda Putih House Bali" className="w-full h-full object-cover opacity-90 scale-110" priority />
+          <div className="absolute inset-0 bg-brand-dark/50 bg-linear-to-t from-brand-dark/80 via-transparent to-brand-dark/20 mix-blend-multiply"></div>
+        </motion.div>
 
         <div className="container mx-auto px-6 relative z-10 pt-28 pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
@@ -195,6 +202,9 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+
+        {/* Cloud Transition Gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-zinc-950 via-brand-creamSoft/60 dark:via-zinc-950/60 to-transparent z-10 pointer-events-none" />
       </section>
   );
 }

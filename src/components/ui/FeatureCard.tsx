@@ -1,5 +1,6 @@
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 interface FeatureCardProps {
   title: string;
@@ -9,19 +10,30 @@ interface FeatureCardProps {
 }
 
 export default function FeatureCard({ title, description, imageSrc, icon }: FeatureCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, margin: "-50px" });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const showDescription = isInView && !isHovered;
+
   return (
-    <div className="relative overflow-hidden rounded-2xl group w-full h-80 sm:h-96 cursor-default border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-2xl transition-all duration-500">
+    <div 
+      ref={ref} 
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative overflow-hidden rounded-2xl w-full h-80 sm:h-96 cursor-default border border-zinc-200 dark:border-zinc-800 transition-all duration-500 ${isInView ? "shadow-2xl" : "shadow-sm"}`}
+    >
       {/* Background Image */}
       <Image
         src={imageSrc}
         alt={title}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
+        className={`object-cover transition-transform duration-700 ${isInView ? "scale-110" : "scale-100"}`}
       />
 
       {/* Gradient Overlay */}
-      {/* Default state: subtle gradient at the bottom. Hover state: extends upwards */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:via-black/70 group-hover:to-black/30 transition-all duration-500" />
+      {/* InView state: extends upwards to make text readable */}
+      <div className={`absolute inset-0 bg-linear-to-t from-black/80 opacity-80 transition-all duration-500 ${showDescription ? "via-black/70 to-black/30 delay-500" : "via-black/10 to-transparent delay-0"}`} />
 
       {/* Content Container */}
       <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end transform transition-transform duration-500">
@@ -37,9 +49,9 @@ export default function FeatureCard({ title, description, imageSrc, icon }: Feat
         </div>
 
         {/* Hidden Description */}
-        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${showDescription ? "grid-rows-[1fr] delay-1000" : "grid-rows-[0fr] delay-0"}`}>
           <div className="overflow-hidden">
-            <p className="text-sm text-zinc-300 leading-relaxed pt-2 pb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+            <p className={`text-sm text-zinc-300 leading-relaxed pt-2 pb-1 transition-opacity duration-500 ${showDescription ? "opacity-100 delay-700" : "opacity-0 delay-0"}`}>
               {description}
             </p>
           </div>

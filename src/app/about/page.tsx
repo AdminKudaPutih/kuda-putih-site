@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Bed, Utensils, Flame, Wifi, ShieldCheck, Sparkles, Dumbbell, BedDouble, Car, Map, MapPin } from "lucide-react";
 import FeatureCard from "@/components/ui/FeatureCard";
 import Link from "next/link";
@@ -74,6 +74,10 @@ const extraServicesData = [
 ];
 
 export default function AboutPage() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 1000], ["0%", "40%"]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+
   return (
     <main className="min-h-screen bg-white dark:bg-zinc-950">
 
@@ -81,15 +85,20 @@ export default function AboutPage() {
       {/* Hero Header Section */}
       <section className="relative h-dvh flex flex-col justify-center items-center px-6 overflow-hidden">
         {/* Background Image */}
-        <Image
-          src="/images/about-main.png"
-          alt="About Kuda Putih House"
-          fill
-          className="object-cover z-0"
-          priority
-        />
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60 z-0" />
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="absolute inset-0 w-full h-full z-0 origin-top"
+        >
+          <Image
+            src="/images/about-main.png"
+            alt="About Kuda Putih House"
+            fill
+            className="object-cover scale-110"
+            priority
+          />
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-black/60 z-0" />
+        </motion.div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 pt-16">
           <motion.h1
@@ -109,6 +118,9 @@ export default function AboutPage() {
             A sanctuary of comfort, community, and tranquility nestled in the heart of South Kuta, Bali.
           </motion.p>
         </div>
+
+        {/* Cloud Transition Gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-white dark:from-zinc-950 via-white/60 dark:via-zinc-950/60 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Detailed Description & Image Gallery */}

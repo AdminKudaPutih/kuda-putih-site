@@ -84,6 +84,9 @@ export default function RoomsPage() {
             Find your perfect sanctuary. Choose from our carefully curated rooms designed for ultimate comfort and tranquility.
           </motion.p>
         </div>
+
+        {/* Cloud Transition Gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-linear-to-t from-brand-creamSoft dark:from-zinc-950 via-brand-creamSoft/60 dark:via-zinc-950/60 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Rooms Listing Section */}
