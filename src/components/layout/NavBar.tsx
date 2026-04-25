@@ -112,7 +112,7 @@ export default function NavBar() {
               ))
             ) : (
               <Link
-                href="/#about"
+                href="/"
                 className="flex items-center gap-2 text-base font-medium text-brand-primarySoft hover:text-brand-accentSoft transition-all"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

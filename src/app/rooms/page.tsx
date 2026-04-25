@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Wifi, Bed, Monitor, Wind, Shield, Coffee, ShoppingCart, Star } from "lucide-react";
 import Link from "next/link";
 
@@ -44,18 +44,27 @@ const availableRooms = [
 ];
 
 export default function RoomsPage() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 1000], ["0%", "40%"]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+
   return (
     <div className="min-h-screen bg-brand-creamSoft dark:bg-zinc-950">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] flex flex-col justify-center items-center px-6 overflow-hidden">
-        <Image
-          src="/images/about-garden.png"
-          alt="Refined Accommodations"
-          fill
-          className="object-cover z-0"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60 z-0" />
+      <section className="relative h-screen min-h-[500px] flex flex-col justify-center items-center px-6 overflow-hidden">
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="absolute inset-0 w-full h-full z-0 origin-top"
+        >
+          <Image
+            src="/images/about-garden.png"
+            alt="Refined Accommodations"
+            fill
+            className="object-cover scale-110"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60 z-0" />
+        </motion.div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 pt-16">
           <motion.h1
@@ -91,7 +100,7 @@ export default function RoomsPage() {
             >
               {/* Image Side */}
               <div className="w-full lg:w-1/2">
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group border border-zinc-200 dark:border-zinc-800">
+                <div className="relative aspect-square lg:aspect-[4/5] xl:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl group border border-zinc-200 dark:border-zinc-800">
                   <Image
                     src={room.image}
                     alt={room.title}
