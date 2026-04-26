@@ -21,11 +21,9 @@ const facilityIcons: Record<string, React.ReactNode> = {
 };
 
 export default function HeroSection() {
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, updateQuantity, globalCheckIn: checkIn, setGlobalCheckIn: setCheckIn, globalCheckOut: checkOut, setGlobalCheckOut: setCheckOut } = useCart();
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
   const [availableRooms, setAvailableRooms] = useState<AvailableRoom[]>([]);
 
   const today = new Date().toISOString().split('T')[0];
@@ -44,10 +42,12 @@ export default function HeroSection() {
   };
 
   const getEffectiveAvailability = (room: AvailableRoom) => {
-    const cartItem = cart.find(
-      item => item.room.id === room.id && item.startDate === checkIn && item.endDate === checkOut
-    );
-    return room.available_count - (cartItem?.quantity || 0);
+    const overlappingCartItems = cart.filter(item => {
+      if (item.room.id !== room.id) return false;
+      return item.startDate < checkOut && item.endDate > checkIn;
+    });
+    const cartQuantity = overlappingCartItems.reduce((sum, item) => sum + item.quantity, 0);
+    return room.available_count - cartQuantity;
   };
 
   const { scrollY } = useScroll();
@@ -221,16 +221,48 @@ export default function HeroSection() {
                               </div>
                             </div>
                             
-                            <button 
-                              onClick={() => addToCart(room, 1, checkIn, checkOut, room.available_count)}
-                              disabled={getEffectiveAvailability(room) <= 0}
-                              className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft p-2.5 rounded-xl transition-all ml-4 shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
-                              title="Add to Cart"
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                              </svg>
-                            </button>
+                            <div className="flex items-center">
+                              {(() => {
+                                const cartItem = cart.find(item => item.room.id === room.id && item.startDate === checkIn && item.endDate === checkOut);
+                                const quantityInCart = cartItem?.quantity || 0;
+
+                                if (quantityInCart > 0) {
+                                  return (
+                                    <div className="flex items-center gap-3 bg-brand-creamSoft dark:bg-brand-dark/50 rounded-lg p-1 border border-brand-darkSoft/10 dark:border-brand-creamSoft/10 ml-4 shrink-0">
+                                      <button
+                                        onClick={() => updateQuantity(room.id, checkIn, checkOut, quantityInCart - 1, room.available_count)}
+                                        className="p-1 hover:bg-brand-darkSoft/10 dark:hover:bg-brand-creamSoft/10 rounded transition-colors"
+                                      >
+                                        <svg className="w-4 h-4 text-brand-darkSoft dark:text-brand-creamSoft" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
+                                      </button>
+                                      <span className="text-sm font-bold text-brand-primary dark:text-brand-primarySoft w-4 text-center">
+                                        {quantityInCart}
+                                      </span>
+                                      <button
+                                        onClick={() => updateQuantity(room.id, checkIn, checkOut, quantityInCart + 1, room.available_count)}
+                                        disabled={getEffectiveAvailability(room) <= 0}
+                                        className="p-1 hover:bg-brand-darkSoft/10 dark:hover:bg-brand-creamSoft/10 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                      >
+                                        <svg className="w-4 h-4 text-brand-darkSoft dark:text-brand-creamSoft" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                                      </button>
+                                    </div>
+                                  );
+                                }
+
+                                return (
+                                  <button 
+                                    onClick={() => addToCart(room, 1, checkIn, checkOut, room.available_count)}
+                                    disabled={getEffectiveAvailability(room) <= 0}
+                                    className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft p-2.5 rounded-xl transition-all ml-4 shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    title="Add to Cart"
+                                  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                  </button>
+                                );
+                              })()}
+                            </div>
                           </motion.div>
                         ))
                       ) : (

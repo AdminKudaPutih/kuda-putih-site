@@ -30,12 +30,10 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function BookSection({ initialRooms }: BookSectionProps) {
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, updateQuantity, globalCheckIn: checkIn, setGlobalCheckIn: setCheckIn, globalCheckOut: checkOut, setGlobalCheckOut: setCheckOut } = useCart();
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState<any | null>(null);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState<ReturnType<typeof getMappedRoom> | null>(null);
   const [availableRooms, setAvailableRooms] = useState<AvailableRoom[]>([]);
 
   const today = new Date().toISOString().split('T')[0];
@@ -52,13 +50,15 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
   };
 
   const getEffectiveAvailability = (room: AvailableRoom) => {
-    const cartItem = cart.find(
-      item => item.room.id === room.id && item.startDate === checkIn && item.endDate === checkOut
-    );
-    return room.available_count - (cartItem?.quantity || 0);
+    const overlappingCartItems = cart.filter(item => {
+      if (item.room.id !== room.id) return false;
+      return item.startDate < checkOut && item.endDate > checkIn;
+    });
+    const cartQuantity = overlappingCartItems.reduce((sum, item) => sum + item.quantity, 0);
+    return room.available_count - cartQuantity;
   };
 
-  const mappedRooms = availableRooms.map(room => {
+  const getMappedRoom = (room: AvailableRoom) => {
     const isSuite = room.type === 'suite';
     const effectiveAvailable = getEffectiveAvailability(room);
     return {
@@ -76,7 +76,9 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
         icon: iconMap[f] || <Star className="w-5 h-5" />
       }))
     };
-  });
+  };
+
+  const mappedRooms = availableRooms.map(getMappedRoom);
 
   const handleCheckAvailability = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -360,16 +362,46 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
                     <p className="text-brand-darkSoft dark:text-brand-cream text-sm font-medium">Price</p>
                     <p className="text-2xl font-bold text-brand-primary dark:text-brand-primarySoft">{selectedRoom.price}</p>
                  </div>
-                 <button 
-                  onClick={() => {
-                    addToCart(selectedRoom.raw_room, 1, checkIn, checkOut, selectedRoom.total_quantity);
-                    setSelectedRoom(null);
-                  }}
-                  disabled={selectedRoom.availability <= 0}
-                  className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-8 py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-95 disabled:opacity-50"
-                 >
-                   Add to Cart
-                 </button>
+                 {(() => {
+                    const cartItem = cart.find(item => item.room.id === selectedRoom.id && item.startDate === checkIn && item.endDate === checkOut);
+                    const quantityInCart = cartItem?.quantity || 0;
+
+                    if (quantityInCart > 0) {
+                      return (
+                        <div className="flex items-center gap-4 bg-brand-creamSoft dark:bg-brand-dark/50 rounded-xl p-2 border border-brand-darkSoft/10 dark:border-brand-creamSoft/10">
+                          <button
+                            onClick={() => updateQuantity(selectedRoom.id, checkIn, checkOut, quantityInCart - 1, selectedRoom.raw_room.available_count)}
+                            className="p-2 hover:bg-brand-darkSoft/10 dark:hover:bg-brand-creamSoft/10 rounded-lg transition-colors"
+                          >
+                            <svg className="w-5 h-5 text-brand-darkSoft dark:text-brand-creamSoft" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
+                          </button>
+                          <span className="text-lg font-bold text-brand-primary dark:text-brand-primarySoft w-6 text-center">
+                            {quantityInCart}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(selectedRoom.id, checkIn, checkOut, quantityInCart + 1, selectedRoom.raw_room.available_count)}
+                            disabled={selectedRoom.availability <= 0}
+                            className="p-2 hover:bg-brand-darkSoft/10 dark:hover:bg-brand-creamSoft/10 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            <svg className="w-5 h-5 text-brand-darkSoft dark:text-brand-creamSoft" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                          </button>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <button 
+                        onClick={() => {
+                          addToCart(selectedRoom.raw_room, 1, checkIn, checkOut, selectedRoom.raw_room.available_count);
+                          setSelectedRoom(null);
+                        }}
+                        disabled={selectedRoom.availability <= 0}
+                        className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-8 py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-95 disabled:opacity-50"
+                      >
+                        Add to Cart
+                      </button>
+                    );
+                 })()}
               </div>
             </motion.div>
           </>

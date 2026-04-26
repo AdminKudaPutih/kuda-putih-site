@@ -18,12 +18,18 @@ interface CartContextType {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  globalCheckIn: string;
+  setGlobalCheckIn: (date: string) => void;
+  globalCheckOut: string;
+  setGlobalCheckOut: (date: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [globalCheckIn, setGlobalCheckIn] = useState<string>("");
+  const [globalCheckOut, setGlobalCheckOut] = useState<string>("");
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -114,7 +120,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       updateQuantity, 
       clearCart, 
       totalItems, 
-      totalPrice 
+      totalPrice,
+      globalCheckIn,
+      setGlobalCheckIn,
+      globalCheckOut,
+      setGlobalCheckOut
     }}>
       {children}
     </CartContext.Provider>

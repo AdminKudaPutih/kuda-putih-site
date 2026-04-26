@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Wifi, Bed, Monitor, Wind, Shield, Coffee, ShoppingCart, Star, Bath, Utensils } from "lucide-react";
 import Link from "next/link";
 import { Room } from "@/lib/data";
+import { useCart } from "@/context/CartContext";
 
 interface RoomsClientProps {
   initialRooms: Room[];
@@ -25,12 +26,21 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function RoomsClient({ initialRooms }: RoomsClientProps) {
+  const { cart } = useCart();
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 1000], ["0%", "40%"]);
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
+  const getRoomCartQuantity = (roomId: string) => {
+    return cart.filter(item => item.room.id === roomId).reduce((sum, item) => sum + item.quantity, 0);
+  };
+
   const mappedRooms = initialRooms.map(room => {
     const isSuite = room.type === 'suite';
+    const inCart = getRoomCartQuantity(room.id);
+    const effectiveQuantity = Math.max(0, room.total_quantity - inCart);
+    const availabilityStatus = effectiveQuantity <= 0 ? "Fully Booked" : (effectiveQuantity <= 2 ? `Only ${effectiveQuantity} left!` : "Available");
+
     return {
       id: room.id,
       title: isSuite ? "Exclusive Suite Room" : "Standard Basic Room",
@@ -39,7 +49,7 @@ export default function RoomsClient({ initialRooms }: RoomsClientProps) {
       price: `IDR ${room.current_price.toLocaleString('id-ID')}`,
       period: "/ month",
       rating: isSuite ? "5.0" : "4.8",
-      availability: room.total_quantity <= 2 ? `Only ${room.total_quantity} left!` : "Available",
+      availability: availabilityStatus,
       facilities: room.facilities.map(f => ({
         icon: iconMap[f] || <Star className="w-5 h-5" />,
         label: f

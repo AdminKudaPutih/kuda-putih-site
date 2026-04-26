@@ -43,10 +43,10 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-brand-creamSoft dark:bg-brand-dark z-[110] shadow-2xl flex flex-col"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-brand-creamSoft dark:bg-brand-dark z-110 shadow-2xl flex flex-col"
           >
             {/* Header */}
-            <div className="p-6 border-b border-brand-darkSoft/10 dark:border-brand-creamSoft/10 flex items-center justify-between bg-brand-cream dark:bg-brand-darkSoft/20">
+            <div className="p-6 border-b border-brand-darkSoft/10 dark:border-brand-creamSoft/10 flex items-center justify-between bg-brand-cream dark:bg-brand-darkSoft/20 shrink-0">
               <div className="flex items-center gap-3">
                 <ShoppingCart className="text-brand-accent w-6 h-6" />
                 <h2 className="text-2xl font-heading font-bold text-brand-primary dark:text-brand-primarySoft">Your Cart</h2>
@@ -65,7 +65,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
             </div>
 
             {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 min-h-0 overflow-y-auto p-6 z-130 space-y-6">
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
                   <div className="w-20 h-20 bg-brand-primary/10 dark:bg-brand-primarySoft/10 rounded-full flex items-center justify-center">
@@ -83,7 +83,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                 cart.map((item) => (
                   <div
                     key={`${item.room.id}-${item.startDate}-${item.endDate}`}
-                    className="flex gap-4 bg-brand-cream dark:bg-brand-darkSoft/30 p-4 rounded-2xl border border-brand-darkSoft/5 dark:border-brand-creamSoft/5 shadow-sm group"
+                    className="flex gap-4 bg-white dark:bg-neutral-800 p-4 rounded-2xl border border-brand-darkSoft/10 dark:border-brand-creamSoft/10 shadow-sm group"
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start">

@@ -1,31 +1,26 @@
-# Phase 2: Booking Cart System & Real-Time Inventory Management
+# Phase 2 Bug Fixes: Cart Synchronization and UI Issues
 
 ## Objective
-Implement a robust client-side cart system that allows users to select multiple rooms and quantities before proceeding to checkout. This phase focuses on state management, UI feedback, and strict inventory validation to ensure a seamless booking experience.
+Address two critical bugs that emerged after implementing the "Add to Cart" logic. These bugs affect cross-component state synchronization for inventory display and the visual layout of the Cart Modal.
 
-## Functional Requirements
+## Identified Issues
 
-### 1. Global Cart State Management
-- **Persistence:** Implement a global state (e.g., React Context or a custom hook) to manage cart items across the application.
-- **Cart Logic:**
-  - Users can add rooms to the cart with specific quantities.
-  - Room quantities in the cart must be validated against real-time availability.
-  - Users **must not** be able to add more units than are currently available in the database.
+### 1. Inconsistent Inventory Display Across Components
+- **Description:** Adding rooms to the cart from one section (e.g., Hero Section) does not update the displayed available quantities in other sections (e.g., Book Section and the Rooms Page).
+- **Example:** If a user adds 3 Basic Rooms (out of 19 available) to the cart via the Hero Section, the Book Section and Rooms Page still display 19 available rooms instead of 16.
+- **Expected Behavior:** The "Available Rooms" count must be globally synchronized. Every component displaying availability must calculate its displayed value dynamically by subtracting the quantities already reserved in the global cart state for those specific dates.
 
-### 2. UI & Navigation Enhancements
-- **Cart Access:** Add a cart icon button to the immediate right of the primary "Book Now" CTA button in the Navigation Bar and relevant sections.
-- **Visual Feedback (Badge):** The cart button must display a dynamic badge showing the total number of room units currently listed in the cart.
-- **Real-Time Inventory Feedback:** As users add rooms to their cart, the displayed "Available Rooms" count in the UI must decrement immediately to reflect their local selection.
+### 2. Cart Modal UI/UX Layout Errors
+- **Description:** The Cart Modal has severe layout and styling issues:
+  - The background of the listed rooms inside the cart is invisible or transparent, making the text hard to read.
+  - The fixed header and footer of the modal are overlapping or blocking the scrollable list of rooms in the cart.
+- **Expected Behavior:**
+  - The listed room items must have a solid, distinct background color (respecting light/dark mode themes) to ensure readability.
+  - The modal must have a proper flexbox layout (`flex-col`) where the header and footer are fixed, and the inner container for cart items (`flex-1 overflow-y-auto`) scrolls independently without being obstructed by the header or footer.
 
-### 3. Inventory Protection & Validation
-- **Strict Bounds:** The "Add to Cart" action must be disabled or restricted if the requested quantity exceeds `available = (total_inventory - active_bookings - current_cart_items)`.
-- **Pre-Checkout Validation:** Before transitioning from the cart to the "Pending" booking state, perform a final server-side check to ensure inventory has not been claimed by another session.
-
-### 4. Direct Booking Workflow
-- **Cart to Checkout:** Transition the cart contents into the `bookings` table as a "Pending" transaction.
-- **Data Integrity:** Ensure that the `start_date` and `end_date` from the availability checker are passed correctly through the cart lifecycle.
-
+### 3. Add input number on cart button inside room list item.
+- After user click add to cart button, it will show input number to choose how many rooms to add. If the input number is 0, it will remove the item from the cart.
 ---
 
 **Senior Developer Action Required:**
-Please implement the `CartProvider` and associated hooks for state management. Update the `HeroSection` and `BookSection` to support the "Add to Cart" flow instead of the current direct alert. Integrate the Cart Icon with a dynamic badge into the `NavBar` and ensure UI availability counts stay in sync with the cart state.
+Please investigate and fix the state synchronization issue so that `HeroSection`, `BookSection`, and any relevant `Rooms` pages react to `CartContext` changes. Additionally, refactor the CSS/Tailwind classes in `CartModal.tsx` to fix the z-index, background, and overflow layout issues.
