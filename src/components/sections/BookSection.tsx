@@ -4,11 +4,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-import { Room } from "@/lib/data";
+import { getRooms, getRoomAvailability, Room } from "@/lib/data";
 import { Bed, Wifi, Wind, Monitor, Bath, Shield, Star, Coffee, Utensils } from "lucide-react";
 
 interface BookSectionProps {
   initialRooms: Room[];
+}
+
+interface AvailableRoom extends Room {
+  available_count: number;
 }
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -28,15 +32,32 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<any | null>(null);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [availableRooms, setAvailableRooms] = useState<AvailableRoom[]>([]);
 
-  const mappedRooms = initialRooms.map(room => {
+  const today = new Date().toISOString().split('T')[0];
+  const minCheckOut = checkIn 
+    ? new Date(new Date(checkIn).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+    : today;
+
+  const handleCheckInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckIn = e.target.value;
+    setCheckIn(newCheckIn);
+    if (checkOut && newCheckIn >= checkOut) {
+      setCheckOut("");
+    }
+  };
+
+  const mappedRooms = availableRooms.map(room => {
     const isSuite = room.type === 'suite';
     return {
       id: room.id,
       name: isSuite ? "Exclusive Suite Room" : "Standard Basic Room",
       image: isSuite ? "/images/about-pool.png" : "/images/about-main.png",
       description: room.description,
-      availability: room.total_quantity, // Simplified for now
+      availability: room.available_count,
+      total_quantity: room.total_quantity,
       rating: isSuite ? "5.0" : "4.8",
       price: `Rp ${room.current_price.toLocaleString('id-ID')} / month`,
       features: room.facilities.map(f => ({
@@ -46,16 +67,26 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
     };
   });
 
-  const handleCheckAvailability = (e: React.FormEvent) => {
+  const handleCheckAvailability = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsChecking(true);
-    setHasChecked(false);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsChecking(false);
+    try {
+      const rooms = await getRooms();
+      const availabilityPromises = rooms.map(async (room) => {
+        const availableCount = await getRoomAvailability(room.id, checkIn, checkOut);
+        return { ...room, available_count: availableCount };
+      });
+      
+      const results = await Promise.all(availabilityPromises);
+      setAvailableRooms(results.filter(r => r.available_count > 0));
       setHasChecked(true);
-    }, 1500);
+    } catch (error) {
+      console.error("Failed to check availability:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsChecking(false);
+    }
   };
 
   return (
@@ -88,6 +119,9 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
                 <input 
                   type="date" 
                   required
+                  min={today}
+                  value={checkIn}
+                  onChange={handleCheckInChange}
                   className="w-full px-4 py-3 rounded-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 text-brand-dark dark:text-brand-creamSoft focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all"
                 />
               </div>
@@ -96,6 +130,9 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
                 <input 
                   type="date" 
                   required
+                  min={minCheckOut}
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft/50 dark:bg-brand-darkSoft/30 text-brand-dark dark:text-brand-creamSoft focus:ring-2 focus:ring-brand-accent focus:outline-none transition-all"
                 />
               </div>
