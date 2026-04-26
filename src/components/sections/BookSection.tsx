@@ -4,42 +4,47 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-// Mock Room Data
-const mockRooms = [
-  {
-    id: 1,
-    name: "Basic Room",
-    image: "/images/about-main.png",
-    description: "Compact and practical, perfect for solo travelers or students seeking a comfortable and affordable stay.",
-    availability: "7/19",
-    rating: "4.8",
-    price: "Rp 1.500.000 / month",
-    features: [
-      { name: "Single Bed", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> },
-      { name: "Shared Bathroom", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> },
-      { name: "Free Wi-Fi", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg> }
-    ]
-  },
-  {
-    id: 2,
-    name: "Suite Room",
-    image: "/images/about-pool.png",
-    description: "Spacious and elegant, offering top-tier comfort with a private bathroom and premium amenities.",
-    availability: "2/5",
-    rating: "4.9",
-    price: "Rp 3.500.000 / month",
-    features: [
-      { name: "King Bed", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> },
-      { name: "En-suite Bathroom", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg> },
-      { name: "AC & Wi-Fi", icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> }
-    ]
-  }
-];
+import { Room } from "@/lib/data";
+import { Bed, Wifi, Wind, Monitor, Bath, Shield, Star, Coffee, Utensils } from "lucide-react";
 
-export default function BookSection() {
+interface BookSectionProps {
+  initialRooms: Room[];
+}
+
+const iconMap: Record<string, React.ReactNode> = {
+  "WiFi": <Wifi className="w-5 h-5" />,
+  "AC": <Wind className="w-5 h-5" />,
+  "TV": <Monitor className="w-5 h-5" />,
+  "Shower": <Bath className="w-5 h-5" />,
+  "Bathtub": <Bath className="w-5 h-5" />,
+  "Mini Bar": <Coffee className="w-5 h-5" />,
+  "Balcony": <Utensils className="w-5 h-5" />,
+  "Queen Bed": <Bed className="w-5 h-5" />,
+  "King Bed": <Bed className="w-5 h-5" />,
+  "Secure Access": <Shield className="w-5 h-5" />,
+};
+
+export default function BookSection({ initialRooms }: BookSectionProps) {
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState<typeof mockRooms[0] | null>(null);
+  const [selectedRoom, setSelectedRoom] = useState<any | null>(null);
+
+  const mappedRooms = initialRooms.map(room => {
+    const isSuite = room.type === 'suite';
+    return {
+      id: room.id,
+      name: isSuite ? "Exclusive Suite Room" : "Standard Basic Room",
+      image: isSuite ? "/images/about-pool.png" : "/images/about-main.png",
+      description: room.description,
+      availability: room.total_quantity, // Simplified for now
+      rating: isSuite ? "5.0" : "4.8",
+      price: `Rp ${room.current_price.toLocaleString('id-ID')} / month`,
+      features: room.facilities.map(f => ({
+        name: f,
+        icon: iconMap[f] || <Star className="w-5 h-5" />
+      }))
+    };
+  });
 
   const handleCheckAvailability = (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,7 +154,7 @@ export default function BookSection() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {mockRooms.map((room, index) => (
+                {mappedRooms.map((room, index) => (
                   <motion.div 
                     key={room.id}
                     initial={{ opacity: 0, y: 30, scale: 0.95 }}

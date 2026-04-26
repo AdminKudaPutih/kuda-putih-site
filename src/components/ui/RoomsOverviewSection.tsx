@@ -4,61 +4,65 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
-import { Wifi, Bed, Monitor, Wind, Shield, Coffee, Utensils, Flame, Sparkles, Dumbbell, Car } from "lucide-react";
+import { Wifi, Bed, Monitor, Wind, Shield, Coffee, Utensils, Flame, Sparkles, Dumbbell, Car, Bath, Star } from "lucide-react";
 import RoomModal, { RoomDetails } from "./RoomModal";
+import { Room } from "@/lib/data";
 
-const rooms: (RoomDetails & { alignment: 'left' | 'right' })[] = [
-  {
-    title: "Standard Basic Room",
-    description: "Our standard basic rooms offer a perfect blend of comfort and functionality. Each room is equipped with high-quality furnishings, a cozy bed, and modern amenities designed for long-term stays.",
-    image: "/images/about-main.png",
-    alignment: "left",
-    price: "IDR 3.000.000 / month",
-    rating: "4.8",
-    availability: "Available",
-    facilities: [
-      { icon: <Bed className="w-5 h-5" />, label: "Queen Bed" },
-      { icon: <Wifi className="w-5 h-5" />, label: "High-Speed Wifi" },
-      { icon: <Wind className="w-5 h-5" />, label: "Air Conditioning" },
-      { icon: <Monitor className="w-5 h-5" />, label: "Smart TV" },
-    ],
-  },
-  {
-    title: "Exclusive Suite Room",
-    description: "Experience premium living in our suite rooms. Featuring more space, enhanced privacy, and luxury finishes, these rooms are ideal for those who seek the best in their accommodation.",
-    image: "/images/about-pool.png",
-    alignment: "right",
-    price: "IDR 5.500.000 / month",
-    rating: "5.0",
-    availability: "Only 2 left!",
-    facilities: [
-      { icon: <Bed className="w-5 h-5" />, label: "King Bed" },
-      { icon: <Wifi className="w-5 h-5" />, label: "Premium Wifi" },
-      { icon: <Wind className="w-5 h-5" />, label: "AC" },
-      { icon: <Monitor className="w-5 h-5" />, label: "50\" Smart TV" },
-      { icon: <Coffee className="w-5 h-5" />, label: "Mini Fridge" },
-    ],
-  },
-  {
-    title: "Vibrant Environment",
-    modalTitle: "Kuda Putih Facilities",
-    description: "Nestled in a serene location, Kuda Putih House provides a tranquil atmosphere surrounded by Bali's natural beauty. Enjoy the perfect balance of peaceful living and strategic access to local attractions.",
-    image: "/images/about-garden.png",
-    alignment: "left",
-    isEnvironment: true,
-    facilities: [
-      { icon: <Utensils className="w-5 h-5" />, label: "Communal Kitchen" },
-      { icon: <Flame className="w-5 h-5" />, label: "BBQ Area" },
-      { icon: <Shield className="w-5 h-5" />, label: "Secure Parking" },
-      { icon: <Sparkles className="w-5 h-5" />, label: "Weekly Cleaning" },
-      { icon: <Dumbbell className="w-5 h-5" />, label: "Gym & Yoga" },
-      { icon: <Car className="w-5 h-5" />, label: "Vehicle Rental" },
-    ],
-  },
-];
+interface RoomsOverviewSectionProps {
+  initialRooms: Room[];
+}
 
-export default function RoomsOverviewSection() {
+const iconMap: Record<string, React.ReactNode> = {
+  "WiFi": <Wifi className="w-5 h-5" />,
+  "AC": <Wind className="w-5 h-5" />,
+  "TV": <Monitor className="w-5 h-5" />,
+  "Shower": <Bath className="w-5 h-5" />,
+  "Bathtub": <Bath className="w-5 h-5" />,
+  "Mini Bar": <Coffee className="w-5 h-5" />,
+  "Balcony": <Utensils className="w-5 h-5" />,
+  "Queen Bed": <Bed className="w-5 h-5" />,
+  "King Bed": <Bed className="w-5 h-5" />,
+  "Secure Access": <Shield className="w-5 h-5" />,
+};
+
+const environmentData: RoomDetails & { alignment: 'left' | 'right' } = {
+  title: "Vibrant Environment",
+  modalTitle: "Kuda Putih Facilities",
+  description: "Nestled in a serene location, Kuda Putih House provides a tranquil atmosphere surrounded by Bali's natural beauty. Enjoy the perfect balance of peaceful living and strategic access to local attractions.",
+  image: "/images/about-garden.png",
+  alignment: "left",
+  isEnvironment: true,
+  facilities: [
+    { icon: <Utensils className="w-5 h-5" />, label: "Communal Kitchen" },
+    { icon: <Flame className="w-5 h-5" />, label: "BBQ Area" },
+    { icon: <Shield className="w-5 h-5" />, label: "Secure Parking" },
+    { icon: <Sparkles className="w-5 h-5" />, label: "Weekly Cleaning" },
+    { icon: <Dumbbell className="w-5 h-5" />, label: "Gym & Yoga" },
+    { icon: <Car className="w-5 h-5" />, label: "Vehicle Rental" },
+  ],
+};
+
+export default function RoomsOverviewSection({ initialRooms }: RoomsOverviewSectionProps) {
   const [selectedRoom, setSelectedRoom] = useState<RoomDetails | null>(null);
+
+  const mappedRooms: (RoomDetails & { alignment: 'left' | 'right' })[] = initialRooms.map((room, index) => {
+    const isSuite = room.type === 'suite';
+    return {
+      title: isSuite ? "Exclusive Suite Room" : "Standard Basic Room",
+      description: room.description,
+      image: isSuite ? "/images/about-pool.png" : "/images/about-main.png",
+      alignment: index % 2 === 0 ? "left" : "right",
+      price: `IDR ${room.current_price.toLocaleString('id-ID')} / month`,
+      rating: isSuite ? "5.0" : "4.8",
+      availability: room.total_quantity <= 2 ? `Only ${room.total_quantity} left!` : "Available",
+      facilities: room.facilities.map(f => ({
+        icon: iconMap[f] || <Star className="w-5 h-5" />,
+        label: f
+      })),
+    };
+  });
+
+  const allDisplayItems = [...mappedRooms, environmentData];
 
   return (
     <section id="rooms" className="py-24 px-6 bg-brand-primarySoft/10 dark:bg-brand-dark overflow-x-hidden">
@@ -85,7 +89,7 @@ export default function RoomsOverviewSection() {
         </div>
 
         <div className="space-y-24 md:space-y-32">
-          {rooms.map((room, index) => (
+          {allDisplayItems.map((room, index) => (
             <div 
               key={index}
               className={`flex flex-col ${room.alignment === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 lg:gap-20`}

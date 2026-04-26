@@ -53,6 +53,6 @@ CREATE POLICY "Public read for posts" ON public.posts FOR SELECT USING (true);
 -- Seed Initial Data for Rooms
 INSERT INTO public.rooms (type, total_quantity, current_price, description, facilities)
 VALUES 
-('basic', 19, 500000.00, 'Comfortable basic room for a relaxing stay.', '["WiFi", "AC", "TV", "Shower"]'::jsonb),
-('suite', 2, 1200000.00, 'Luxurious suite with premium amenities and extra space.', '["WiFi", "AC", "TV", "Bathtub", "Mini Bar", "Balcony"]'::jsonb)
+('basic', 19, 3000000.00, 'Comfortable basic room for a relaxing stay.', '["WiFi", "AC", "TV", "Shower"]'::jsonb),
+('suite', 2, 5500000.00, 'Luxurious suite with premium amenities and extra space.', '["WiFi", "AC", "TV", "Bathtub", "Mini Bar", "Balcony"]'::jsonb)
 ON CONFLICT DO NOTHING;
