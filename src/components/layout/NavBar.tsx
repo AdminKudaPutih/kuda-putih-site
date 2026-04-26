@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { useCart } from "@/context/CartContext";
+import { ShoppingCart } from "lucide-react";
+import CartModal from "../ui/CartModal";
+
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
@@ -13,6 +17,8 @@ const navLinks = [
 ];
 
 export default function NavBar() {
+  const { totalItems } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [isAtTop, setIsAtTop] = useState(true);
@@ -124,27 +130,49 @@ export default function NavBar() {
           </nav>
 
           {/* CTA - Right */}
-          <div className="hidden md:flex items-center justify-end w-1/4">
-           
-              <div className="relative inline-flex group">
-                <div className="absolute inset-0 rounded-full border-2 border-brand-accent bg-brand-accentSoft/50 pulse-soft opacity-75"></div>
-                <Link
+          <div className="hidden md:flex items-center justify-end w-1/4 gap-4">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 text-brand-primary hover:bg-brand-primary/10 rounded-full transition-all"
+              aria-label="View Cart"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-brand-accent text-brand-creamSoft text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm border-2 border-brand-cream">
+                  {totalItems}
+                </span>
+              )}
+            </button>
 
-                  href="/#book"
-                  className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${
-                    activeSection === "book" 
-                      ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-brand-creamSoft" 
-                      : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-brand-primarySoft/50 dark:border-brand-primarySoft text-brand-accent hover:text-brand-creamSoft hover:bg-brand-accent hover:border-brand-accent"
+            <div className="relative inline-flex group">
+              <div className="absolute inset-0 rounded-full border-2 border-brand-accent bg-brand-accentSoft/50 pulse-soft opacity-75"></div>
+              <Link
+                href="/#book"
+                className={`relative px-5 py-2 text-sm font-bold border-2 rounded-full transition-all duration-300 shadow-sm hover:scale-105 ${activeSection === "book"
+                    ? "bg-brand-accent border-brand-accent shadow-brand-accentSoft dark:bg-brand-accent dark:border-brand-accent text-brand-creamSoft"
+                    : "bg-brand-accentSoft/20 border-brand-accent shadow-brand-accentSoft dark:bg-brand-primarySoft/50 dark:border-brand-primarySoft text-brand-accent hover:text-brand-creamSoft hover:bg-brand-accent hover:border-brand-accent"
                   }`}
-                >
-                  Book Now
-                </Link>
-              </div>
-            
+              >
+                Book Now
+              </Link>
+            </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 text-brand-primary"
+              aria-label="View Cart"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 bg-brand-accent text-brand-creamSoft text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-brand-cream">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
             <button
               onClick={toggleMobileMenu}
               className={`inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-primary hover:bg-brand-creamSoft focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-primary`}
@@ -228,6 +256,8 @@ export default function NavBar() {
           )}
         </div>
       </div>
+
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 }

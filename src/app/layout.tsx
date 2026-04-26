@@ -5,6 +5,8 @@ import NavBar from "../components/layout/NavBar";
 import Footer from "../components/layout/Footer";
 import WhatsAppButton from "../components/ui/WhatsAppButton";
 
+import { CartProvider } from "@/context/CartContext";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -31,12 +33,14 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body">
-        <NavBar />
-        <main className="grow">
-          {children}
-        </main>
-        <WhatsAppButton />
-        <Footer />
+        <CartProvider>
+          <NavBar />
+          <main className="grow">
+            {children}
+          </main>
+          <WhatsAppButton />
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

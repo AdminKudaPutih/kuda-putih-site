@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { getRooms, getRoomAvailability, Room } from "@/lib/data";
+import { useCart } from "@/context/CartContext";
 
 interface AvailableRoom extends Room {
   available_count: number;
@@ -20,6 +21,7 @@ const facilityIcons: Record<string, React.ReactNode> = {
 };
 
 export default function HeroSection() {
+  const { cart, addToCart } = useCart();
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
   const [checkIn, setCheckIn] = useState("");
@@ -39,6 +41,13 @@ export default function HeroSection() {
     if (checkOut && newCheckIn >= checkOut) {
       setCheckOut("");
     }
+  };
+
+  const getEffectiveAvailability = (room: AvailableRoom) => {
+    const cartItem = cart.find(
+      item => item.room.id === room.id && item.startDate === checkIn && item.endDate === checkOut
+    );
+    return room.available_count - (cartItem?.quantity || 0);
   };
 
   const { scrollY } = useScroll();
@@ -196,7 +205,7 @@ export default function HeroSection() {
                               <h4 className="text-brand-creamSoft font-bold capitalize">{room.type} Room</h4>
                               <div className="flex items-center gap-2 mt-1">
                                 <span className="text-[10px] font-bold bg-brand-creamSoft/10 text-brand-creamSoft/90 px-2 py-0.5 rounded-full">
-                                  {room.available_count} / {room.total_quantity} Left
+                                  {getEffectiveAvailability(room)} / {room.total_quantity} Left
                                 </span>
                                 <span className="text-xs text-brand-accent font-semibold">
                                   Rp {room.current_price.toLocaleString('id-ID')}
@@ -213,8 +222,9 @@ export default function HeroSection() {
                             </div>
                             
                             <button 
-                              onClick={() => alert(`Added ${room.type} Room to Cart`)}
-                              className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft p-2.5 rounded-xl transition-all ml-4 shrink-0"
+                              onClick={() => addToCart(room, 1, checkIn, checkOut, room.available_count)}
+                              disabled={getEffectiveAvailability(room) <= 0}
+                              className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft p-2.5 rounded-xl transition-all ml-4 shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
                               title="Add to Cart"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

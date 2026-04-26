@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 import { getRooms, getRoomAvailability, Room } from "@/lib/data";
+import { useCart } from "@/context/CartContext";
 import { Bed, Wifi, Wind, Monitor, Bath, Shield, Star, Coffee, Utensils } from "lucide-react";
 
 interface BookSectionProps {
@@ -29,6 +30,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function BookSection({ initialRooms }: BookSectionProps) {
+  const { cart, addToCart } = useCart();
   const [isChecking, setIsChecking] = useState(false);
   const [hasChecked, setHasChecked] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<any | null>(null);
@@ -49,15 +51,24 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
     }
   };
 
+  const getEffectiveAvailability = (room: AvailableRoom) => {
+    const cartItem = cart.find(
+      item => item.room.id === room.id && item.startDate === checkIn && item.endDate === checkOut
+    );
+    return room.available_count - (cartItem?.quantity || 0);
+  };
+
   const mappedRooms = availableRooms.map(room => {
     const isSuite = room.type === 'suite';
+    const effectiveAvailable = getEffectiveAvailability(room);
     return {
       id: room.id,
       name: isSuite ? "Exclusive Suite Room" : "Standard Basic Room",
       image: isSuite ? "/images/about-pool.png" : "/images/about-main.png",
       description: room.description,
-      availability: room.available_count,
+      availability: effectiveAvailable,
       total_quantity: room.total_quantity,
+      raw_room: room, // Reference for addToCart
       rating: isSuite ? "5.0" : "4.8",
       price: `Rp ${room.current_price.toLocaleString('id-ID')} / month`,
       features: room.facilities.map(f => ({
@@ -242,9 +253,10 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
                         <button 
                           onClick={(e) => {
                             e.stopPropagation();
-                            alert(`Added ${room.name} to Cart`);
+                            addToCart(room.raw_room, 1, checkIn, checkOut, room.raw_room.available_count);
                           }}
-                          className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-4 py-2.5 rounded-xl font-bold transition-all shadow-md active:scale-95 flex items-center gap-2"
+                          disabled={room.availability <= 0}
+                          className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-4 py-2.5 rounded-xl font-bold transition-all shadow-md active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -343,16 +355,20 @@ export default function BookSection({ initialRooms }: BookSectionProps) {
               </div>
               
               {/* Sticky Footer */}
-              <div className="p-5 border-t border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft dark:bg-brand-dark shadow-[0_-10px_30px_rgba(0,0,0,0.05)] z-10 transition-colors">
+              <div className="p-5 border-t border-brand-darkSoft/20 dark:border-brand-creamSoft/10 bg-brand-creamSoft dark:bg-brand-dark shadow-[0_-10px_30px_rgba(0,0,0,0.05)] flex items-center justify-between z-10 transition-colors">
                  <div>
                     <p className="text-brand-darkSoft dark:text-brand-cream text-sm font-medium">Price</p>
                     <p className="text-2xl font-bold text-brand-primary dark:text-brand-primarySoft">{selectedRoom.price}</p>
                  </div>
                  <button 
-                  onClick={() => alert(`Redirecting to final booking for ${selectedRoom.name}...`)}
-                  className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-8 py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-95"
+                  onClick={() => {
+                    addToCart(selectedRoom.raw_room, 1, checkIn, checkOut, selectedRoom.total_quantity);
+                    setSelectedRoom(null);
+                  }}
+                  disabled={selectedRoom.availability <= 0}
+                  className="bg-brand-accent hover:bg-brand-accentSoft text-brand-creamSoft px-8 py-3.5 rounded-xl font-bold transition-all shadow-md active:scale-95 disabled:opacity-50"
                  >
-                   Confirm Booking
+                   Add to Cart
                  </button>
               </div>
             </motion.div>
